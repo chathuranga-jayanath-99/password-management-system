@@ -15,7 +15,10 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import background from "../../assets/img/blue.svg";
 import { Paper } from '@mui/material';
-import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
+import fb from '../../assets/img/Social FB.svg';
+import twitter from '../../assets/img/Social Twitter.svg';
+import google from '../../assets/img/Social Google.svg';
+
 
 function Login() {
 	const theme = createTheme();
@@ -49,7 +52,23 @@ function Login() {
             </Typography>
           </div>
           
-          <FacebookRoundedIcon fontSize='large'/>
+          <Grid container direction="row" justifyContent="center" alignItems="center">
+            {/* <Grid item xs={3}></Grid> */}
+            <Grid item xs={3}>
+              <img src={fb} alt="" className='image-icon fb'/>
+            </Grid>
+            <Grid item xs={3}>
+              <img src={twitter} alt="" className='image-icon twitter'/>
+            </Grid>
+            <Grid item xs={3}>
+              <img src={google} alt="" className='image-icon google'/>
+            </Grid>
+            {/* <Grid item xs={3}></Grid> */}
+          </Grid>
+
+          
+         
+        
 
           <Box component="form" noValidate sx={{ mt: 1, alignItems: 'center'}}>
             <TextField
