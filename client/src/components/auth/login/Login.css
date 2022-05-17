@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 .login-body {
-    background: url(../../assets/img/back-img.svg) no-repeat center center fixed;
+    background: url(../../../assets/img/back-img.svg) no-repeat center center fixed;
     background-size: cover;
     height: 102.1vh;
     width: 100vw;
@@ -65,18 +65,36 @@
     color: #546E7A !important;
 }
 
-.image-icon {
-    width: 75px !important;
-    margin-top: -25px;
+.icon-btn {
+    border-radius: 50% !important;
 }
 
-.fb {
+.image-icon {
+    width: 75px !important;
+    height: 75px !important;
+    margin-top: -35px;
+}
+
+.icon-btn:hover, .icon-btn::after, .icon-btn:active::after {
+    background-color: transparent !important;
+    border-radius: 100% !important;
+    width: 15px !important;
+    /* margin: 10px !important; */
+}
+
+.icon-btn {
+    width: 15px !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+
+/* .fb {
     margin-left: 30px;
 }
 
 .google {
     margin-left: -30px;
-}
+} */
 
 .login-btn {
 
@@ -148,7 +166,7 @@
     font-family: 'IBM Plex Mono' !important;
     font-style: normal !important;
     font-weight: 400 !important;
-    font-size: 16px !important;
+    font-size: 14.5px !important;
     line-height: 22px !important;
     /* identical to box height */
 
@@ -167,7 +185,7 @@
     font-family: 'IBM Plex Mono' !important;
     font-style: normal !important;
     font-weight: 400 !important;
-    font-size: 16px !important;
+    font-size: 14.5px !important;
     line-height: 22px !important;
 
     /* width: 276px !important; */

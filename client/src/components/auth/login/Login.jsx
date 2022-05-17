@@ -1,6 +1,5 @@
 import React from 'react';
 import './Login.css';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -9,15 +8,14 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import background from "../../assets/img/blue.svg";
+import background from "../../../assets/img/blue.svg";
 import { Paper } from '@mui/material';
-import fb from '../../assets/img/Social FB.svg';
-import twitter from '../../assets/img/Social Twitter.svg';
-import google from '../../assets/img/Social Google.svg';
+import fb from '../../../assets/img/Social FB.svg';
+import twitter from '../../../assets/img/Social Twitter.svg';
+import google from '../../../assets/img/Social Google.svg';
 
 
 function Login() {
@@ -54,14 +52,20 @@ function Login() {
           
           <Grid container direction="row" justifyContent="center" alignItems="center">
             {/* <Grid item xs={3}></Grid> */}
-            <Grid item xs={3}>
-              <img src={fb} alt="" className='image-icon fb'/>
+            <Grid item>
+              <Button className="icon-btn">
+                <img src={fb} alt="" className='image-icon fb'/>
+              </Button>
             </Grid>
-            <Grid item xs={3}>
-              <img src={twitter} alt="" className='image-icon twitter'/>
+            <Grid item>
+              <Button className="icon-btn">
+                <img src={twitter} alt="" className='image-icon twitter'/>
+              </Button>
             </Grid>
-            <Grid item xs={3}>
-              <img src={google} alt="" className='image-icon google'/>
+            <Grid item>
+              <Button className="icon-btn">
+                <img src={google} alt="" className='image-icon google'/>
+              </Button>
             </Grid>
             {/* <Grid item xs={3}></Grid> */}
           </Grid>
@@ -124,7 +128,7 @@ function Login() {
 
           <br/>
               
-                <Link href="#" variant="body2" className='create-acc' sx={{display:'flex', alignItems:'center', justifyContent:'center'}}>
+                <Link href="/register" variant="body2" className='create-acc' sx={{display:'flex', alignItems:'center', justifyContent:'center'}}>
                   New here? Create an account
                 </Link>
 
@@ -133,7 +137,7 @@ function Login() {
                   Forgot your password?
                 </Link>
               
-          </Box>
+          </Box> 
         </Box>
         {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
