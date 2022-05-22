@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+.login-body {
+    background: url(../../assets/img/back-img.svg) no-repeat center center fixed;
+    background-size: cover;
+    height: 102.1vh;
+    width: 100vw;
+    background-position: center;
+    background-repeat: no-repeat;
+
+
+}
+
+.login-paper {
+    width: 476px;
+    height: 600px;
+
+    background: rgba(246, 246, 246, 0.95) !important;
+    box-shadow: 16px 16px 40px rgba(187, 195, 206, 0.6) !important;
+    border-radius: 16px !important;
+}
+
+.blue-box {
+    /* background: url(../../assets/img/blue.svg) no-repeat center center fixed; */
+   
+    width: 476px;
+    height: 211px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.login-topic { 
+    font-family: 'IBM Plex Mono' !important;
+    font-style: normal !important;
+    height: 52px !important;
+    font-weight: 700 !important;
+    font-size: 40px !important;
+    line-height: 52px;
+    /* identical to box height */
+
+    text-align: center !important;
+    letter-spacing: 1px !important;
+
+    color: #2C3135 !important;
+    margin-top: 40px !important;
+
+}
+
+.login-desc {
+    height: 22px;
+ 
+
+    font-family: 'IBM Plex Mono' !important;
+    font-style: normal;
+    font-weight: 400 !important;
+    font-size: 17px !important;
+    line-height: 22px !important;
+    /* identical to box height */
+
+    text-align: center;
+
+    /* blueGrey600 */
+
+    color: #546E7A !important;
+}
+
+.image-icon {
+    width: 75px !important;
+    margin-top: -25px;
+}
+
+.fb {
+    margin-left: 30px;
+}
+
+.google {
+    margin-left: -30px;
+}
+
+.login-btn {
+
+    background: #9AD0EC !important;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+    border-radius: 16px !important;
+
+    width: 120px;
+    height: 48px;
+
+    font-family: 'IBM Plex Mono' !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 17px !important;
+    line-height: 22px !important;
+    text-transform: none !important;
+    /* identical to box height */
+
+    text-align: center !important;
+    letter-spacing: 1px !important;
+
+    color: #2C3135 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    margin-top: 0px !important;
+}
+
+.text-field {
+    background: #FFFFFF !important;
+    box-shadow: inset -4px -4px 12px rgba(253, 255, 255, 0.8), inset 4px 4px 12px rgba(187, 195, 206, 0.6) !important;
+    border-radius: 16px !important;
+
+    /* top: calc(50% - 22px/2 + 3px) !important; */
+
+    font-family: 'IBM Plex Mono' !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 17px !important;
+    line-height: 22px !important;
+    /* identical to box height */
+
+    letter-spacing: 1px !important;
+    border: none !important;
+
+    color: #90A4AE !important;
+
+    border: solid 1px transparent !important;
+    width: 330px;
+    /* height: 48px; */
+
+    display: flex !important;
+
+    /* padding: 15px !important; */
+    /* align-items: center !important; */
+    /* justify-content: center !important; */
+
+
+}
+
+.remember-me {
+    font-family: 'IBM Plex Mono' !important;
+    font-style: normal !important;
+}
+
+.create-acc {
+    font-family: 'IBM Plex Mono' !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 22px !important;
+    /* identical to box height */
+
+    text-align: center !important;
+
+    /* blueGrey600 */
+
+    color: #546E7A !important;
+
+    text-decoration: none !important;
+
+    margin-top: -20px !important;
+}
+
+.forgot-pwd {
+    font-family: 'IBM Plex Mono' !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 22px !important;
+
+    /* width: 276px !important; */
+    /* identical to box height */
+
+    text-align: center !important;
+
+    /* blueGrey600 */
+
+    color: #546E7A !important;
+
+    text-decoration: none !important;
+    margin-top: 5px !important;
+}
+
