@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import background from "../../../assets/img/blue.svg";
-import { Paper } from '@mui/material';
+import { Paper, FormHelperText } from '@mui/material';
 import fb from '../../../assets/img/Social FB.svg';
 import twitter from '../../../assets/img/Social Twitter.svg';
 import google from '../../../assets/img/Social Google.svg';
@@ -20,6 +20,35 @@ import google from '../../../assets/img/Social Google.svg';
 
 function Register() {
 	const theme = createTheme();
+
+  const [formData, setFormData] = React.useState(
+    {name: "",
+    email: "",
+    password: "",
+  });
+
+  const [mailError, setMailError] = React.useState("");
+  const [pwError, setPWError] = React.useState("");
+  const [nameError, setNameError] = React.useState("");
+
+  React.useEffect(() => {
+    console.log(formData)
+  },[formData]);
+
+  const handleName = (event) => {
+    setFormData({...formData, name: event.target.value});
+    setNameError("");
+  }
+
+  const handleEmail = (event) => {
+    setFormData({...formData, email: event.target.value});
+    setMailError("");
+  }
+
+  const handlePassword = (event) => {
+    setFormData({...formData, password: event.target.value});
+    setPWError("");
+  } 
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -30,6 +59,61 @@ function Register() {
       email: data.get('email'),
       password: data.get('password'),
     });
+
+    const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+    if (formData.name === '') {
+      setNameError("Required");
+    }
+
+    if (formData.password === '') {
+      setPWError("Required");
+    }
+
+    if (formData.email === '') {
+      setMailError("Required");
+    }
+
+    else if ((!formData.email || regex.test(formData.email) === false)) {
+      setMailError("Email is not valid");
+    }
+
+    // if (formData.name !== '') {
+    //   const text = /(?=.*?[A-Z][a-z])/;
+    //   const textName = text.test(formData.name);
+    //   if (!textName) {
+    //     setNameError("")
+    //   }
+    // }
+
+    if(formData.password !== '' ){
+      const uppercaseRegExp   = /(?=.*?[A-Z])/;
+      const lowercaseRegExp   = /(?=.*?[a-z])/;
+      const digitsRegExp      = /(?=.*?[0-9])/;
+      const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
+      const minLengthRegExp   = /.{8,}/;
+      const passwordLength =      formData.password.length;
+      const uppercasePassword =   uppercaseRegExp.test(formData.password);
+      const lowercasePassword =   lowercaseRegExp.test(formData.password);
+      const digitsPassword =      digitsRegExp.test(formData.password);
+      const specialCharPassword = specialCharRegExp.test(formData.password);
+      const minLengthPassword =   minLengthRegExp.test(formData.password);
+      let errMsg ="";
+      if(!uppercasePassword){
+              errMsg="At least one Uppercase";
+      }else if(!lowercasePassword){
+              errMsg="At least one Lowercase";
+      }else if(!digitsPassword){
+              errMsg="At least one digit";
+      }else if(!specialCharPassword){
+              errMsg="At least one Special Characters";
+      }else if(!minLengthPassword){
+              errMsg="At least minumum 8 characters";
+      }else{
+          errMsg="";
+      }
+      setPWError(errMsg);
+      }
   }
 
   return (
@@ -81,9 +165,6 @@ function Register() {
             {/* <Grid item xs={3}></Grid> */}
           </Grid>
 
-          
-         
-        
 
           <Box component="form" noValidate sx={{ mt: 1, alignItems: 'center'}} onSubmit={handleSubmit}>
             <TextField
@@ -102,8 +183,10 @@ function Register() {
                       disableUnderline: true,
                       
               }}
+              onChange={handleName}
 
             />
+            {nameError !== '' ? <FormHelperText className="text-danger" error sx={{paddingLeft: 1, marginBottom: -2}}>{nameError}</FormHelperText>: null}
 
             <TextField
               margin="normal"
@@ -114,15 +197,16 @@ function Register() {
               label="Email"
               name="email"
               autoComplete="email"
-              autoFocus
               className='text-field'
               variant="filled"
               InputProps={{
                       disableUnderline: true,
                       
               }}
-
+              onChange={handleEmail}
             />
+            {mailError !== '' ? <FormHelperText className="text-danger" error sx={{paddingLeft: 1, marginBottom: -2}}>{mailError}</FormHelperText>: null}
+
             <TextField
               margin="normal"
               required
@@ -135,11 +219,11 @@ function Register() {
               className='text-field'
               variant="filled"
               InputProps={{
-                disableUnderline: true,
-                
-        }}
-           
+                disableUnderline: true,                
+              }}
+              onChange={handlePassword}
             />
+            {pwError !== '' ? <FormHelperText className="text-danger" error sx={{paddingLeft: 1, marginBottom: -2}}>{pwError}</FormHelperText>: null}
            
             <Button
               type="submit"

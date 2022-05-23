@@ -7,13 +7,11 @@
     width: 100vw;
     background-position: center;
     background-repeat: no-repeat;
-
-
 }
 
 .login-paper {
     width: 476px;
-    height: 600px;
+    height: 620px;
 
     background: rgba(246, 246, 246, 0.95) !important;
     box-shadow: 16px 16px 40px rgba(187, 195, 206, 0.6) !important;
@@ -178,7 +176,7 @@
 
     text-decoration: none !important;
 
-    margin-top: -20px !important;
+    margin-top: -30px !important;
 }
 
 .forgot-pwd {
