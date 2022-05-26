@@ -66,11 +66,11 @@ class CheckboxList extends React.Component {
                     {this.state.socialMedia.map((value) => {
                         return (
                             <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" maxWidth="xl" sx={{ borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
-                                <Box gridColumn="span 1" style={{ paddingTop: "-20px" }}>
+                                <Box gridColumn="span 1">
                                     <img src={value.logo} style={{ width: '80px' }} />
                                 </Box>
-                                <Box gridColumn="span 2" sx={{ paddingTop: 3 }}>
-                                    <span style={{ fontWeight: '700', color: '#90A4AE', letterSpacing: '1px', textTransform: 'capitalize', marginLeft: '30px' }}>
+                                <Box gridColumn="span 2" sx={{ paddingTop: 1 }}>
+                                    <span style={{ fontWeight: '700', color: '#90A4AE', letterSpacing: '1px', textTransform: 'capitalize', marginLeft: '30px', fontSize: '19px' }}>
                                         {value.socialMediaType}
                                     </span>
                                 </Box>
