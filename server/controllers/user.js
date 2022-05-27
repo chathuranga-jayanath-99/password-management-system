@@ -7,6 +7,13 @@ async function getAllUsers (req, res, next) {
     res.send(allUsers);
 }
 
+async function getUser (req, res, next) {
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).send("The user with given ID not found");
+
+    res.send(user);
+}
+
 async function postUser (req, res, next) {
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
@@ -23,5 +30,41 @@ async function postUser (req, res, next) {
     res.header('x-auth-token', token).send(_.pick(user, ['id','name','email','gender']));
 }
 
+async function putUser (req, res, next) {
+    const { error } = validate(req.body);
+    if (error) return res.status(404).send(error.details[0].message);
+
+    const user = await User.findByIdAndUpdate(req.params.id, {
+        name: req.body.name
+    });
+
+    if (!user) return res.status(404).send("The customer with given ID not found.");
+
+    res.send(user);
+}
+
+async function getMe (req, res, next) {
+    const user = await User.findById(req.user.id);
+    res.send(user);
+}
+
+async function putMe (req, res, next) {
+    const { error } = validate(req.body);
+    if (error) return res.status(404).send(error.details[0].message);
+
+    const user = await User.findByIdAndUpdate(req.user.id, {
+        name: req.body.name,
+        gender: req.body.gener
+    });
+
+    if (!user) return res.status(404).send("The customer with given ID not found.");
+
+    res.send(user);
+}
+
 module.exports.getAllUsers = getAllUsers;
+module.exports.getUser = getUser;
 module.exports.postUser = postUser;
+module.exports.putUser = putUser;
+module.exports.getMe = getMe;
+module.exports.putMe = putMe;
