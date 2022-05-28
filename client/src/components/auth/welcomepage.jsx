@@ -10,6 +10,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import background from "../../assets/img/blue.svg";
 import welcome from "../../assets/img/welcome.svg"
 import { Paper } from '@mui/material';
+import { Link } from 'react-router-dom'
+
 
 
 function Welcome() {
@@ -50,27 +52,31 @@ function Welcome() {
                                     <Box component="form" noValidate sx={{ mt: 1, alignItems: 'center' }}>
 
                                         <Grid container direction="row" justifyContent="center" alignItems="center">
-                                            <Button
-                                                // type="submit"
-                                                // fullWidth
+                                            <Link
+                                                to='/signup'>
+                                                <Button
+                                                    // type="submit"
+                                                    // fullWidth
 
-                                                variant="contained"
-                                                sx={{ mt: 3, mb: 2, ml: 'auto', mr: 5 }}
-                                                className='login-btn'
-                                            >
-                                                Register
-                                            </Button>
+                                                    variant="contained"
+                                                    sx={{ mt: 3, mb: 2, ml: 'auto', mr: 5 }}
+                                                    className='login-btn'
+                                                >
+                                                    Register
+                                                </Button>
+                                            </Link>
+                                            <Link to='/login'>
+                                                <Button
+                                                    // type="submit"
+                                                    // fullWidth
 
-                                            <Button
-                                                // type="submit"
-                                                // fullWidth
-
-                                                variant="contained"
-                                                sx={{ mt: 3, mb: 2, ml: 5, mr: 'auto' }}
-                                                className='login-btn'
-                                            >
-                                                Login
-                                            </Button>
+                                                    variant="contained"
+                                                    sx={{ mt: 3, mb: 2, ml: 5, mr: 'auto' }}
+                                                    className='login-btn'
+                                                >
+                                                    Login
+                                                </Button>
+                                            </Link>
                                         </Grid>
 
 
