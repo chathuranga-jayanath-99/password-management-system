@@ -1,5 +1,5 @@
 import React from 'react';
-import './welcomepage.css';
+import './Welcome.css';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
@@ -18,13 +18,13 @@ function Welcome() {
     const theme = createTheme();
 
     return (
-        <div className='login-body' >
+        <div className='welcome-body' >
             <Grid container spacing={2}>
                 <Grid item xs={6}>
 
                 </Grid>
                 <Grid item xs={6}>
-                    <Paper elevation={7} className='login-paper'>
+                    <Paper elevation={7} className='welcome-paper'>
                         <ThemeProvider theme={theme}>
                             <Container component="main" maxWidth="xs" sx={{ alignItems: 'center' }}>
                                 <CssBaseline />
@@ -36,8 +36,8 @@ function Welcome() {
                                         alignItems: 'center',
                                     }}
                                 >
-                                    <div className='blue-box' style={{ backgroundImage: `url(${background})` }}>
-                                        <Typography component="h1" variant="h5" className='login-topic'>
+                                    <div className='welcome-blue-box' style={{ backgroundImage: `url(${background})` }}>
+                                        <Typography component="h1" variant="h5" className='welcome-topic'>
                                             Welcome
                                         </Typography>
                                     </div>
@@ -51,9 +51,11 @@ function Welcome() {
 
                                     <Box component="form" noValidate sx={{ mt: 1, alignItems: 'center' }}>
 
+                                        <br/>
+
                                         <Grid container direction="row" justifyContent="center" alignItems="center">
                                             <Link
-                                                to='/signup'>
+                                                to='/register'>
                                                 <Button
                                                     // type="submit"
                                                     // fullWidth

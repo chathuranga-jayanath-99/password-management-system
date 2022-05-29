@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
-.login-body {
-    background: url(../assets/img/back-img.svg) no-repeat center center fixed;
+.welcome-body {
+    background: url(../../assets/img/back-img.svg) no-repeat center center fixed;
     background-size: cover;
     height: 102.1vh;
     width: 100vw;
@@ -11,46 +11,44 @@
 
 }
 
-.login-paper {
-    width: inherit;
-    height: 135%;
+.welcome-paper {
+    width: 470px !important;
+    height: 600px !important;
+
     background: rgba(246, 246, 246, 0.95) !important;
     box-shadow: 16px 16px 40px rgba(187, 195, 206, 0.6) !important;
     border-radius: 16px !important;
 }
 
-.blue-box {
-    /* background: url(../assets/img/blue.svg) no-repeat center center fixed; */
-    width: 241%;
-    height: 120px;
-    background-color:#86C6F4;
-    display: flex; 
-    flex-direction: column; 
+.welcome-blue-box {
+    /* background: url(../../assets/img/blue.svg) no-repeat center center fixed; */
+    width: 470px !important;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+    height: 211px;
+    display: flex;
+    flex-direction: column;
     gap: 5px;
-    background-repeat: inherit;
-
 }
 
-.login-topic { 
-    /* font-family: 'IBM Plex Mono' !important; */
-    /* font-style: normal !important; */
-    /* height: 20px !important; */
-    /* font-weight: 700 !important; */
-    /* font-size: 25px !important; */
-    /* line-height: 52px; */
+.welcome-topic { 
+    font-family: 'IBM Plex Mono' !important;
+    font-style: normal !important;
+    height: 52px !important;
+    font-weight: 700 !important;
+    font-size: 40px !important;
+    line-height: 52px;
     /* identical to box height */
 
-    /* text-align: left !important; */
-    /* letter-spacing: 1px !important; */
-
-    /* margin-left: 40px !important; */
+    text-align: center !important;
+    letter-spacing: 1px !important;
 
     color: #2C3135 !important;
-    /* margin-top: 40px !important; */
+    margin-top: 40px !important;
 
 }
 
-.login-desc {
+.welcome-desc {
     height: 22px;
  
 
@@ -69,7 +67,8 @@
 }
 
 .image-icon {
-    width: 60px !important;
+    width: 75px !important;
+    margin-top: -25px;
 }
 
 .fb {

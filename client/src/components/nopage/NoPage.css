@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
-.resetpw-body {
-    background: url(../../../assets/img/back-img.svg) no-repeat center center fixed;
+.nopage-body {
+    background: url(../../assets/img/back-img.svg) no-repeat center center fixed;
     background-size: cover;
     height: 102.1vh;
     width: 100vw;
@@ -9,16 +9,16 @@
     background-repeat: no-repeat;
 }
 
-.resetpw-paper {
+.nopage-paper {
     width: 476px;
-    height: 500px;
+    height: 620px;
 
     background: rgba(246, 246, 246, 0.95) !important;
     box-shadow: 16px 16px 40px rgba(187, 195, 206, 0.6) !important;
     border-radius: 16px !important;
 }
 
-.resetpw-blue-box {
+.nopage-blue-box {
     /* background: url(../../assets/img/blue.svg) no-repeat center center fixed; */
    
     width: 476px;
@@ -28,7 +28,7 @@
     gap: 5px;
 }
 
-.resetpw-topic { 
+.nopage-topic { 
     font-family: 'IBM Plex Mono' !important;
     font-style: normal !important;
     height: 52px !important;
@@ -45,7 +45,7 @@
 
 }
 
-.resetpw-desc {
+.nopage-desc {
     height: 22px;
  
 
@@ -63,13 +63,13 @@
     color: #546E7A !important;
 }
 
-.resetpw-btn {
+.nopage-btn {
 
     background: #9AD0EC !important;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
     border-radius: 16px !important;
 
-    width: 120px;
+    width: 170px;
     height: 48px;
 
     font-family: 'IBM Plex Mono' !important;
@@ -92,30 +92,6 @@
     margin-top: 0px !important;
 }
 
-.text-field {
-    background: #FFFFFF !important;
-    box-shadow: inset -4px -4px 12px rgba(253, 255, 255, 0.8), inset 4px 4px 12px rgba(187, 195, 206, 0.6) !important;
-    border-radius: 16px !important;
 
-    /* top: calc(50% - 22px/2 + 3px) !important; */
-
-    font-family: 'IBM Plex Mono' !important;
-    font-style: normal !important;
-    font-weight: 700 !important;
-    font-size: 17px !important;
-    line-height: 22px !important;
-    /* identical to box height */
-
-    letter-spacing: 1px !important;
-    border: none !important;
-
-    color: #90A4AE !important;
-
-    border: solid 1px transparent !important;
-    width: 330px;
-    /* height: 48px; */
-
-    display: flex !important;
-}
 
 

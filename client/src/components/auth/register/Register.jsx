@@ -135,7 +135,7 @@ function Register() {
             alignItems: 'center',
           }}
         >
-          <div className='blue-box' style={{ backgroundImage: `url(${background})` }}>
+          <div className='reg-blue-box' style={{ backgroundImage: `url(${background})` }}>
             <Typography component="h1" variant="h5" className='reg-topic'>
               Register
             </Typography>
