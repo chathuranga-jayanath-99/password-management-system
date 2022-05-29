@@ -17,7 +17,7 @@ class Image {
         const sql = `select * from image where id=?;`;
         const [images, _] = await db.execute(sql, [id]);
 
-        if (images.length > 0) return new Image(images[0]);
+        if (images.length > 0) return images[0];
 
         return false;
     }

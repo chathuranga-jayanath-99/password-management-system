@@ -36,7 +36,8 @@ create table if not EXISTS image (
   id int unsigned AUTO_INCREMENT PRIMARY KEY,
   user_id int unsigned NOT NULL,
   title VARCHAR(255) NOT NULL,
-  encrypted_image VARCHAR(1024) NOT NULL,
+  encrypted_image LONGTEXT NOT NULL,
+  iv VARCHAR(255) NOT NULL,
   foreign key (user_id) 
     references user(id)
 );
