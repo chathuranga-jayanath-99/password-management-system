@@ -99,7 +99,7 @@ function ResetPassword() {
           alignItems: 'center',
         }}
       >
-        <div className='blue-box' style={{ backgroundImage: `url(${background})` }}>
+        <div className='resetpw-blue-box' style={{ backgroundImage: `url(${background})` }}>
           <Typography component="h1" variant="h5" className='resetpw-topic'>
             Reset Password
           </Typography>

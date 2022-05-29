@@ -2,17 +2,13 @@ import React from 'react';
 import './NoPage.css';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import background from "../../assets/img/blue.svg";
-import { FormGroup, FormHelperText, Paper } from '@mui/material';
+import { FormGroup, Paper } from '@mui/material';
 import img_404 from '../../assets/img/404.svg';
 
 
@@ -39,7 +35,7 @@ const theme = createTheme();
             alignItems: 'center',
           }}
         >
-          <div className='blue-box' style={{ backgroundImage: `url(${background})` }}>
+          <div className='nopage-blue-box' style={{ backgroundImage: `url(${background})` }}>
             <Typography component="h1" variant="h5" className='nopage-topic'>
               Sorry!
             </Typography>
@@ -62,7 +58,7 @@ const theme = createTheme();
               sx={{ mt: 3, mb: 2, ml:'auto', mr:'auto'}}
               className='nopage-btn'
               onClick={() => {
-                window.location.href='/dashboard';}}
+                window.location.href='/';}}
             >
               Back to Home
             </Button>
