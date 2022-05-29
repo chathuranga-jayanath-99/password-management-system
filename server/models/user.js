@@ -72,7 +72,7 @@ function validateUser(user){
         name: Joi.string().min(3).required(),
         email: Joi.string().min(5).max(255).required(),
         password: Joi.string().min(5).max(1024).required(),
-        gender: Joi.string().required()
+        gender: Joi.string()
     });
 
     return schema.validate(user);

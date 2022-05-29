@@ -16,10 +16,13 @@ import { Paper, FormHelperText } from '@mui/material';
 import fb from '../../../assets/img/Social FB.svg';
 import twitter from '../../../assets/img/Social Twitter.svg';
 import google from '../../../assets/img/Social Google.svg';
-
+import * as userService from "../../../services/userService";
+import auth from "../../../services/authService";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
 	const theme = createTheme();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = React.useState(
     {name: "",
@@ -50,7 +53,7 @@ function Register() {
     setPWError("");
   } 
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
@@ -113,6 +116,17 @@ function Register() {
           errMsg="";
       }
       setPWError(errMsg);
+      }
+
+      // need to execute this if no errors 
+      try {
+        const response = await userService.register({ name:formData.name, email:formData.email, password:formData.password, gender:"male" });
+        auth.loginUserWithJwt(response.headers["x-auth-token"]);
+        console.log("success");
+        navigate("/");
+      } catch (ex) {
+        // add these to the front end
+        console.log(ex);
       }
   }
 
