@@ -6,12 +6,14 @@ import Register from './components/auth/register/Register';
 import ResetPassword from './components/auth/resetpassword/ResetPassword';
 import Password from './components/password';
 import NoPage from './components/nopage/NoPage';
+import Welcome from './components/welcome/Welcome';
 
 function App() {
   return (
   
       <Router>
         <Routes>
+          <Route index element={<Welcome/>}/>
           <Route path="login" element={<Login/>}/>
           <Route path="register" element={<Register/>}/>
           <Route path="resetpassword" element={<ResetPassword/>}/>

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
-.login-body {
+.welcome-body {
     background: url(../../assets/img/back-img.svg) no-repeat center center fixed;
     background-size: cover;
     height: 102.1vh;
@@ -11,7 +11,7 @@
 
 }
 
-.login-paper {
+.welcome-paper {
     width: 470px !important;
     height: 600px !important;
 
@@ -20,7 +20,7 @@
     border-radius: 16px !important;
 }
 
-.blue-box {
+.welcome-blue-box {
     /* background: url(../../assets/img/blue.svg) no-repeat center center fixed; */
     width: 470px !important;
     border-top-left-radius: 15px !important;
@@ -31,7 +31,7 @@
     gap: 5px;
 }
 
-.login-topic { 
+.welcome-topic { 
     font-family: 'IBM Plex Mono' !important;
     font-style: normal !important;
     height: 52px !important;
@@ -48,7 +48,7 @@
 
 }
 
-.login-desc {
+.welcome-desc {
     height: 22px;
  
 
