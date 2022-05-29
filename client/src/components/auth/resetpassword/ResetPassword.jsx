@@ -145,7 +145,7 @@ function ResetPassword() {
             type="password"
             id="password"
             // autoComplete="current-password"
-            autoFocus
+            // autoFocus
             className='text-field'
             variant="filled"
             InputProps={{
