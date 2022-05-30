@@ -123,7 +123,7 @@ function Register() {
         const response = await userService.register({ name:formData.name, email:formData.email, password:formData.password, gender:"male" });
         auth.loginUserWithJwt(response.headers["x-auth-token"]);
         console.log("success");
-        navigate("/");
+        navigate("/passwordmanager");
       } catch (ex) {
         // add these to the front end
         console.log(ex);

@@ -17,6 +17,7 @@ import fb from '../../../assets/img/Social FB.svg';
 import twitter from '../../../assets/img/Social Twitter.svg';
 import google from '../../../assets/img/Social Google.svg';
 import { useNavigate } from "react-router-dom";
+import auth from '../../../services/authService';
 
 
 function Login() {
@@ -50,7 +51,7 @@ function Login() {
     setFormData({...formData, rememberMe: event.target.checked})
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(event);
     const data = new FormData(event.currentTarget);
@@ -106,6 +107,15 @@ function Login() {
 
     if (formData.email === "balarajayaweera@gmail.com" && formData.password === "00moraBalara27") {
       navigate("/dashboard");
+    }
+
+    // execute this if no errors in formData
+    try {
+      await auth.loginUser(formData.email, formData.password);
+      navigate("/passwordmanager");
+    } catch (ex) {
+      // display the errors
+      console.log(ex.response.data);
     }
   }  
 
