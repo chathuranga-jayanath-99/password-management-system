@@ -9,6 +9,7 @@ import NoPage from "./components/nopage/NoPage";
 import Welcome from "./components/welcome/Welcome";
 import PasswordManager from "./components/passwordmanager/PasswordManager";
 import auth from "./services/authService";
+import Dashboard from "./components/dashboard/dashboard";
 
 class App extends Component {
   state = {};
@@ -29,6 +30,7 @@ class App extends Component {
           <Route path="register" element={<Register />} />
           <Route path="resetpassword" element={<ResetPassword />} />
           <Route path="passwordmanager" element={<PasswordManager />} />
+          <Route path="dashboard" element={<Dashboard />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
       </Router>
