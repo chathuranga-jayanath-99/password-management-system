@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
-import auth, { getCurrentUser } from '../services/authService'
+import auth, { getCurrentUser } from '../services/authService';
+import * as userService from "../../../services/userService";
 
   
 export const AuthContext = React.createContext(null);
@@ -36,8 +37,20 @@ export function AuthProvider({ children }) {
 
       setUser(undefined);
     };
+
+    let signup = async (name, email, password, callback) => {
+        try {
+            const response = await userService.register({ name:name, email:email, password:password, gender:"male" });
+            auth.loginUserWithJwt(response.headers["x-auth-token"]);
+            console.log("success");
+            navigate("/passwordmanager");
+          } catch (ex) {
+            // add these to the front end
+            console.log(ex);
+          }
+    }
   
-    let value = { user, signin, signout };
+    let value = { user, signin, signout, signup };
   
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
   }
