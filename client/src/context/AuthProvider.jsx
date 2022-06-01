@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import auth, { getCurrentUser } from '../services/authService';
-import * as userService from "../../../services/userService";
+import * as userService from "../services/userService";
 
   
 export const AuthContext = React.createContext(null);
