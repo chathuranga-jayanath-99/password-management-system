@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import './PasswordManager.css';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -25,6 +26,7 @@ class PasswordManager extends Component {
          this.setState({ passwords} );
          
      }
+
     render() { 
 
             return (
@@ -40,6 +42,12 @@ class PasswordManager extends Component {
                                 <Button size="large" variant="contained" sx={{ marginRight: 4, marginLeft: 20 }}>Password Manager</Button>
                                 <Button size="large" variant="contained" sx={{ marginRight: 4 }}>Image Manager</Button>
                                 <Button size="large" variant="contained" sx={{ marginRight: 4 }}>Logout</Button>
+
+                                {/* change below nav-link as necessary, only added to check. */}
+                                {/* <NavLink className="nav-link" to="/logout">
+                                    Logout
+                                </NavLink> */}
+
                             </Box>
                         </Box>
                         <h1 style={{ textAlign: 'center' }}>Password Manager</h1>

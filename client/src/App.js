@@ -8,6 +8,7 @@ import {
 import logo from "./logo.svg";
 import "./App.css";
 import Login from "./components/auth/login/Login";
+import Logout from "./components/auth/Logout";
 import Register from "./components/auth/register/Register";
 import ResetPassword from "./components/auth/resetpassword/ResetPassword";
 import NoPage from "./components/nopage/NoPage";
@@ -32,6 +33,7 @@ class App extends Component {
         <Routes>
           <Route index element={<Welcome />} />
           <Route path="login" element={<Login />} />
+          <Route path="logout" element={<Logout />} />
           <Route path="register" element={<Register />} />
           <Route path="resetpassword" element={<ResetPassword />} />
           <Route
