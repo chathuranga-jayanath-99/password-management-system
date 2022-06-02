@@ -1,7 +1,8 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import Login from "./components/auth/login/Login";
+import Logout from "./components/auth/Logout";
 import Register from "./components/auth/register/Register";
 import ResetPassword from "./components/auth/resetpassword/ResetPassword";
 import NoPage from "./components/nopage/NoPage";
