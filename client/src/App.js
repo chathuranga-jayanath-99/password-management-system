@@ -19,6 +19,7 @@ function App() {
           <Routes>
             <Route index element={<Welcome />} />
             <Route path="login" element={<Login />} />
+            <Route path="logout" element={<Logout />} />
             <Route path="register" element={<Register />} />
             <Route path="resetpassword" element={<ResetPassword />} />
             <Route path="passwordmanager" element={<RequireAuth><PasswordManager /></RequireAuth>} />
