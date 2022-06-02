@@ -16,13 +16,14 @@ import { FormGroup, FormHelperText, Paper } from '@mui/material';
 import fb from '../../../assets/img/Social FB.svg';
 import twitter from '../../../assets/img/Social Twitter.svg';
 import google from '../../../assets/img/Social Google.svg';
-import { useNavigate } from "react-router-dom";
-import auth from '../../../services/authService';
+import { useAuth } from '../../../context/AuthProvider';
 
 
 function Login() {
 	const theme = createTheme();
-  const navigate = useNavigate();
+  
+
+  let authContext = useAuth();
 
   const [formData, setFormData] = React.useState(
     {email: "",
@@ -34,7 +35,8 @@ function Login() {
   const [pwError, setPWError] = React.useState("");
 
   React.useEffect(() => {
-    console.log(formData)
+    console.log(formData);
+    console.log(authContext);
   },[formData]);
 
   const handleEmail = (event) => {
@@ -76,47 +78,10 @@ function Login() {
       setMailError("Email is not valid");
     }
 
-    if(formData.password !== '' ){
-      const uppercaseRegExp   = /(?=.*?[A-Z])/;
-      const lowercaseRegExp   = /(?=.*?[a-z])/;
-      const digitsRegExp      = /(?=.*?[0-9])/;
-      const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
-      const minLengthRegExp   = /.{8,}/;
-      const passwordLength =      formData.password.length;
-      const uppercasePassword =   uppercaseRegExp.test(formData.password);
-      const lowercasePassword =   lowercaseRegExp.test(formData.password);
-      const digitsPassword =      digitsRegExp.test(formData.password);
-      const specialCharPassword = specialCharRegExp.test(formData.password);
-      const minLengthPassword =   minLengthRegExp.test(formData.password);
-      let errMsg ="";
-      if(!uppercasePassword){
-              errMsg="At least one Uppercase";
-      }else if(!lowercasePassword){
-              errMsg="At least one Lowercase";
-      }else if(!digitsPassword){
-              errMsg="At least one digit";
-      }else if(!specialCharPassword){
-              errMsg="At least one Special Characters";
-      }else if(!minLengthPassword){
-              errMsg="At least minumum 8 characters";
-      }else{
-          errMsg="";
-      }
-      setPWError(errMsg);
-      }
-
-    if (formData.email === "balarajayaweera@gmail.com" && formData.password === "00moraBalara27") {
-      navigate("/dashboard");
-    }
-
     // execute this if no errors in formData
-    try {
-      await auth.loginUser(formData.email, formData.password);
-      navigate("/passwordmanager");
-    } catch (ex) {
-      // display the errors
-      console.log(ex.response.data);
-    }
+    authContext.signin(formData.email, formData.password);
+    
+        
   }  
 
   return (
@@ -138,7 +103,7 @@ function Login() {
             alignItems: 'center',
           }}
         >
-          <div className='blue-box' style={{ backgroundImage: `url(${background})` }}>
+          <div className='login-blue-box' style={{ backgroundImage: `url(${background})` }}>
             <Typography component="h1" variant="h5" className='login-topic'>
               Login
             </Typography>
