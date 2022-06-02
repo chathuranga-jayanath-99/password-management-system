@@ -1,14 +1,7 @@
 import * as React from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
-import CommentIcon from '@mui/icons-material/Comment';
 import { Button, InputAdornment, LinearProgress, linearProgressClasses, OutlinedInput, TextField } from '@mui/material';
-import { Box, styled } from '@mui/system';
+import { Box } from '@mui/system';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import twitter from '../assets/img/Social Twitter.svg';
@@ -16,39 +9,63 @@ import google from '../assets/img/Social Google.svg';
 import facebook from '../assets/img/Social FB.svg';
 import snapchat from '../assets/img/Social Snapchat.svg'
 import linkdin from '../assets/img/Social Linkdin.svg'
+import { getPasswords } from '../services/passwordService';
 
 
 // import React from 'react'
 
 
 class CheckboxList extends React.Component {
+
     state = {
-        socialMedia: [{ value: 0, logo: facebook, socialMediaType: "facebook", password: '', showPassword: false, barLength: 40 },
-        { value: 1, logo: twitter, socialMediaType: "twitter", password: '', showPassword: false, barLength: 90 },
-        { value: 2, logo: google, socialMediaType: "google", password: '', showPassword: false, barLength: 10 },
-        { value: 3, logo: linkdin, socialMediaType: "linkdin", password: '', showPassword: false, barLength: 100 },
-        { value: 4, logo: snapchat, socialMediaType: "snapchat", password: '', showPassword: false, barLength: 100 }
-        ]
+        passwords: [],
     }
+    async componentDidMount() {
+        // const { data: passwords } = await getPasswords();
+
+        const { data: passwords } = await getPasswords();
+
+        passwords.forEach(function (element) {
+            element.showPassword = false;
+            element.barLength = 100 * Math.random(1);
+            // element.logo = getLOGO(element.title);
+            if (element.title === 'facebook') {
+                return element.logo = facebook;
+            } else if (element.title === 'linkdin') {
+                return element.logo = linkdin;
+            } else if (element.title === 'twitter') {
+                return element.logo = twitter;
+            } else if (element.title === 'gmail') {
+                return element.logo = google;
+            } else if (element.title === 'snapchat') {
+                return element.logo = snapchat;
+            }
+        });
+        //console.log(passwords)
+        this.setState({ passwords });
+
+    }
+
     handleChange = (e, value) => {
-        const newValues = this.state.socialMedia;
+        const newValues = this.state.passwords;
         const index = newValues.indexOf(value);
         newValues[index].password = e.target.value;
         // console.log(newValues);
-        this.setState({ socialMedia: newValues })
+        this.setState({ passwords: newValues })
         // setValues({ ...values, [prop]: event.target.value });
     };
     handleClickShowPassword = (value) => {
-        const newValues = this.state.socialMedia;
+        const newValues = this.state.passwords;
+        console.log(value)
         const index = newValues.indexOf(value);
         newValues[index].showPassword = !newValues[index].showPassword;
-        this.setState({ socialMedia: newValues })
+        this.setState({ passwords: newValues })
     };
     handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
     handleColorChange = (value) => {
-        console.log(value)
+        // console.log(value)
         if (value < 30) {
             return 'error';
         } else if (value < 50) {
@@ -59,19 +76,19 @@ class CheckboxList extends React.Component {
     };
 
     render() {
-
+        if (this.state.passwords.length === 0) return (<h1>No passwords to show</h1>)
         return (
             <Box sx={{ width: '100%', maxWidth: 'xl' }}>
                 <Box maxWidth="xl" fixed sx={{ backgroundColor: '#E5E5E5', height: '80%', borderRadius: 4, marginLeft: 7, paddingTop: 5 }}>
-                    {this.state.socialMedia.map((value) => {
+                    {this.state.passwords.map((value) => {
                         return (
-                            <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" maxWidth="xl" sx={{ borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
+                            <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" maxWidth="xl" sx={{ borderTopLeftRadius: 10, borderTopRightRadius: 10 }} key={value.id}>
                                 <Box gridColumn="span 1">
                                     <img src={value.logo} style={{ width: '80px' }} />
                                 </Box>
                                 <Box gridColumn="span 2" sx={{ paddingTop: 1 }}>
                                     <span style={{ fontWeight: '700', color: '#90A4AE', letterSpacing: '1px', textTransform: 'capitalize', marginLeft: '30px', fontSize: '19px' }}>
-                                        {value.socialMediaType}
+                                        {value.title}
                                     </span>
                                 </Box>
                                 {/* <TextField style={{ marginLeft: 40, borderRadius: 20, width: 300 }} id="demo-helper-text-misaligned-no-helper" label="Name" /> */}

@@ -16,46 +16,50 @@ import { FormGroup, FormHelperText, Paper } from '@mui/material';
 import fb from '../../../assets/img/Social FB.svg';
 import twitter from '../../../assets/img/Social Twitter.svg';
 import google from '../../../assets/img/Social Google.svg';
-import { useNavigate } from "react-router-dom";
-import auth from '../../../services/authService';
+import { useAuth } from '../../../context/AuthProvider';
 
 
 function Login() {
 	const theme = createTheme();
-  const navigate = useNavigate();
+  
+
+  let authContext = useAuth();
 
   const [formData, setFormData] = React.useState(
-    {email: "",
-    password: "",
-    rememberMe: false,
-  });
+    {
+      email: "",
+      password: "",
+      rememberMe: false,
+    });
 
   const [mailError, setMailError] = React.useState("");
   const [pwError, setPWError] = React.useState("");
 
   React.useEffect(() => {
-    console.log(formData)
+    console.log(formData);
+    console.log(authContext);
   },[formData]);
 
+
   const handleEmail = (event) => {
-    setFormData({...formData, email: event.target.value});
+    setFormData({ ...formData, email: event.target.value });
     setMailError("");
   }
 
   const handlePassword = (event) => {
-    setFormData({...formData, password: event.target.value});
+    setFormData({ ...formData, password: event.target.value });
     setPWError("");
-  } 
+  }
 
   const handleRememberMe = (event) => {
-    setFormData({...formData, rememberMe: event.target.checked})
+    setFormData({ ...formData, rememberMe: event.target.checked })
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(event);
+    // console.log(event);
     const data = new FormData(event.currentTarget);
-  
+
     console.log({
       email: data.get('email'),
       password: data.get('password'),
@@ -68,62 +72,25 @@ function Login() {
       setPWError("Required");
     }
 
-    if (formData.email === ''){
+    if (formData.email === '') {
       setMailError("Required");
     }
 
-    else if ((!formData.email || regex.test(formData.email) === false)){
+    else if ((!formData.email || regex.test(formData.email) === false)) {
       setMailError("Email is not valid");
     }
 
-    if(formData.password !== '' ){
-      const uppercaseRegExp   = /(?=.*?[A-Z])/;
-      const lowercaseRegExp   = /(?=.*?[a-z])/;
-      const digitsRegExp      = /(?=.*?[0-9])/;
-      const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
-      const minLengthRegExp   = /.{8,}/;
-      const passwordLength =      formData.password.length;
-      const uppercasePassword =   uppercaseRegExp.test(formData.password);
-      const lowercasePassword =   lowercaseRegExp.test(formData.password);
-      const digitsPassword =      digitsRegExp.test(formData.password);
-      const specialCharPassword = specialCharRegExp.test(formData.password);
-      const minLengthPassword =   minLengthRegExp.test(formData.password);
-      let errMsg ="";
-      if(!uppercasePassword){
-              errMsg="At least one Uppercase";
-      }else if(!lowercasePassword){
-              errMsg="At least one Lowercase";
-      }else if(!digitsPassword){
-              errMsg="At least one digit";
-      }else if(!specialCharPassword){
-              errMsg="At least one Special Characters";
-      }else if(!minLengthPassword){
-              errMsg="At least minumum 8 characters";
-      }else{
-          errMsg="";
-      }
-      setPWError(errMsg);
-      }
-
-    if (formData.email === "balarajayaweera@gmail.com" && formData.password === "00moraBalara27") {
-      navigate("/dashboard");
-    }
-
     // execute this if no errors in formData
-    try {
-      await auth.loginUser(formData.email, formData.password);
-      navigate("/passwordmanager");
-    } catch (ex) {
-      // display the errors
-      console.log(ex.response.data);
-    }
+    authContext.signin(formData.email, formData.password);
+    
+        
   }  
 
   return (
     <div className='login-body' >
       <Grid container spacing={2}>
         <Grid item xs={6}>
-          
+
         </Grid>
         <Grid item xs={6}>
         <Paper elevation={7} className='login-paper'>
@@ -138,7 +105,7 @@ function Login() {
             alignItems: 'center',
           }}
         >
-          <div className='blue-box' style={{ backgroundImage: `url(${background})` }}>
+          <div className='login-blue-box' style={{ backgroundImage: `url(${background})` }}>         
             <Typography component="h1" variant="h5" className='login-topic'>
               Login
             </Typography>
@@ -245,9 +212,9 @@ function Login() {
     </ThemeProvider>
     </Paper>
         </Grid>
-        
+
       </Grid>
-      
+
     </div>
   )
 }
