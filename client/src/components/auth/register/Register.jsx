@@ -16,13 +16,12 @@ import { Paper, FormHelperText } from '@mui/material';
 import fb from '../../../assets/img/Social FB.svg';
 import twitter from '../../../assets/img/Social Twitter.svg';
 import google from '../../../assets/img/Social Google.svg';
-import * as userService from "../../../services/userService";
-import auth from "../../../services/authService";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from '../../../context/AuthProvider';
 
 function Register() {
 	const theme = createTheme();
-  const navigate = useNavigate();
+  
+  let authContext = useAuth();
 
   const [formData, setFormData] = React.useState(
     {name: "",
@@ -81,14 +80,6 @@ function Register() {
       setMailError("Email is not valid");
     }
 
-    // if (formData.name !== '') {
-    //   const text = /(?=.*?[A-Z][a-z])/;
-    //   const textName = text.test(formData.name);
-    //   if (!textName) {
-    //     setNameError("")
-    //   }
-    // }
-
     if(formData.password !== '' ){
       const uppercaseRegExp   = /(?=.*?[A-Z])/;
       const lowercaseRegExp   = /(?=.*?[a-z])/;
@@ -119,15 +110,8 @@ function Register() {
       }
 
       // need to execute this if no errors 
-      try {
-        const response = await userService.register({ name:formData.name, email:formData.email, password:formData.password, gender:"male" });
-        auth.loginUserWithJwt(response.headers["x-auth-token"]);
-        console.log("success");
-        navigate("/passwordmanager");
-      } catch (ex) {
-        // add these to the front end
-        console.log(ex);
-      }
+      authContext.signup(formData.name, formData.email, formData.password);
+      
   }
 
   return (
@@ -200,7 +184,7 @@ function Register() {
               onChange={handleName}
 
             />
-            {nameError !== '' ? <FormHelperText className="text-danger" error sx={{paddingLeft: 1, marginBottom: -2}}>{nameError}</FormHelperText>: null}
+            <FormHelperText className="text-danger" error sx={{paddingLeft: 1}}>{nameError}</FormHelperText>
 
             <TextField
               margin="normal"
@@ -219,7 +203,7 @@ function Register() {
               }}
               onChange={handleEmail}
             />
-            {mailError !== '' ? <FormHelperText className="text-danger" error sx={{paddingLeft: 1, marginBottom: -2}}>{mailError}</FormHelperText>: null}
+            <FormHelperText className="text-danger" error sx={{paddingLeft: 1}}>{mailError}</FormHelperText>
 
             <TextField
               margin="normal"
@@ -237,7 +221,7 @@ function Register() {
               }}
               onChange={handlePassword}
             />
-            {pwError !== '' ? <FormHelperText className="text-danger" error sx={{paddingLeft: 1, marginBottom: -2}}>{pwError}</FormHelperText>: null}
+            <FormHelperText className="text-danger" error sx={{paddingLeft: 1}}>{pwError}</FormHelperText>
            
             <Button
               type="submit"
