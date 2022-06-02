@@ -26,10 +26,11 @@ function Login() {
   let authContext = useAuth();
 
   const [formData, setFormData] = React.useState(
-    {email: "",
-    password: "",
-    rememberMe: false,
-  });
+    {
+      email: "",
+      password: "",
+      rememberMe: false,
+    });
 
   const [mailError, setMailError] = React.useState("");
   const [pwError, setPWError] = React.useState("");
@@ -39,25 +40,26 @@ function Login() {
     console.log(authContext);
   },[formData]);
 
+
   const handleEmail = (event) => {
-    setFormData({...formData, email: event.target.value});
+    setFormData({ ...formData, email: event.target.value });
     setMailError("");
   }
 
   const handlePassword = (event) => {
-    setFormData({...formData, password: event.target.value});
+    setFormData({ ...formData, password: event.target.value });
     setPWError("");
-  } 
+  }
 
   const handleRememberMe = (event) => {
-    setFormData({...formData, rememberMe: event.target.checked})
+    setFormData({ ...formData, rememberMe: event.target.checked })
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(event);
+    // console.log(event);
     const data = new FormData(event.currentTarget);
-  
+
     console.log({
       email: data.get('email'),
       password: data.get('password'),
@@ -70,11 +72,11 @@ function Login() {
       setPWError("Required");
     }
 
-    if (formData.email === ''){
+    if (formData.email === '') {
       setMailError("Required");
     }
 
-    else if ((!formData.email || regex.test(formData.email) === false)){
+    else if ((!formData.email || regex.test(formData.email) === false)) {
       setMailError("Email is not valid");
     }
 
@@ -88,7 +90,7 @@ function Login() {
     <div className='login-body' >
       <Grid container spacing={2}>
         <Grid item xs={6}>
-          
+
         </Grid>
         <Grid item xs={6}>
         <Paper elevation={7} className='login-paper'>
@@ -103,7 +105,7 @@ function Login() {
             alignItems: 'center',
           }}
         >
-          <div className='login-blue-box' style={{ backgroundImage: `url(${background})` }}>
+          <div className='login-blue-box' style={{ backgroundImage: `url(${background})` }}>         
             <Typography component="h1" variant="h5" className='login-topic'>
               Login
             </Typography>
@@ -210,9 +212,9 @@ function Login() {
     </ThemeProvider>
     </Paper>
         </Grid>
-        
+
       </Grid>
-      
+
     </div>
   )
 }
