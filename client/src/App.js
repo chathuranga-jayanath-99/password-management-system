@@ -9,6 +9,7 @@ import NoPage from "./components/nopage/NoPage";
 import Welcome from "./components/welcome/Welcome";
 import PasswordManager from "./components/passwordmanager/PasswordManager";
 import { AuthProvider, RequireAuth} from "./context/AuthProvider";
+import Dashboard from "./components/dashboard/dashboard";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="register" element={<Register />} />
             <Route path="resetpassword" element={<ResetPassword />} />
             <Route path="passwordmanager" element={<RequireAuth><PasswordManager /></RequireAuth>} />
+            <Route path="dashboard" element={<Dashboard />} />
             <Route path="*" element={<NoPage />} />
           </Routes>
         </AuthProvider>
