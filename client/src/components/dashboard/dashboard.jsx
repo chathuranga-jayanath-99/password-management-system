@@ -26,7 +26,7 @@ import { FormGroup, FormHelperText, Paper } from '@mui/material';
 
 function Dashboard() {
     return (
-        <div className='login-body'>
+        <div className='body'>
             <Container fixed maxWidth="sm" sx={{height: 100}}></Container>
             <Box maxWidth="xl" fixed sx={{ backgroundColor: '#E5E5E5', minHeight: '80%', maxHeight:'150%', borderRadius: 4, paddingBottom: 3, marginLeft: 20, marginRight: 20,marginBottom: 10}}>
                 <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" maxWidth="xl" sx={{ background: '#86C6F4', minHeight: '20%', maxHeight: '50%', borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
@@ -56,7 +56,7 @@ function Dashboard() {
                                 <p style={{ color: '#90A4AE'}}>Account Name</p>
                             </Box>
                             <Box gridColumn="span 3" sx={{ paddingTop: 4 }}>
-                                <Box className='text-field' fixed>
+                                <Box className='box-field' fixed>
 
                                 </Box>
                             </Box>
@@ -70,7 +70,7 @@ function Dashboard() {
                                 <p style={{color: '#90A4AE'}}>Account Name</p>
                             </Box>
                             <Box gridColumn="span 3" sx={{ paddingTop: 4 }}>
-                                <Box className='text-field' fixed>
+                                <Box className='box-field' fixed>
                                 </Box>
                             </Box>
                         </Box>
