@@ -23,7 +23,7 @@ function App() {
             <Route path="register" element={<Register />} />
             <Route path="resetpassword" element={<ResetPassword />} />
             <Route path="passwordmanager" element={<RequireAuth><PasswordManager /></RequireAuth>} />
-            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} />
             <Route path="*" element={<NoPage />} />
           </Routes>
         </AuthProvider>
