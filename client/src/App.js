@@ -10,6 +10,7 @@ import PasswordManager from "./components/passwordmanager/PasswordManager";
 import ProtectedRoute from './components/common/protectedRoute';
 import auth from './services/authService';
 import Dashboard from './components/dashboard/dashboard';
+import Logout from './components/auth/Logout';
 
 class App extends Component {
   state = {};
@@ -27,6 +28,7 @@ class App extends Component {
         <Routes>
           <Route index element={<Welcome />} />
           <Route path="login" element={<Login />} />
+          <Route path="logout" element={<Logout />} />
           <Route path="register" element={<Register />} />
           <Route path="resetpassword" element={<ResetPassword />} />
           <Route
