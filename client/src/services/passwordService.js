@@ -15,16 +15,12 @@ export function getPassword(passwordId) {
   return http.get(passwordUrl(passwordId));
 }
 
-// password : {"userId": 1, "title": "facebook", "password": "12345"}
 export function savePassword(password) {
-  if (password.id) {
+  console.log(password);
+  if (password._id) {
     const body = { ...password };
-    delete body.id;
-    return http.put(passwordUrl(password.id), body);
+    delete body._id;
+    return http.put(passwordUrl(password._id), body);
   }
   return http.post(apiEndpoint, password);
-}
-
-export function viewPassword(passwordId) {
-  return http.get(`${apiEndpoint}/view-password/${passwordId}`);
 }
