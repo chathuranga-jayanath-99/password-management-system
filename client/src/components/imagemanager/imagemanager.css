@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+.body {
+    background: url(../../assets/img/back-img.svg);
+    background-size: cover;
+    min-height: 100vh;
+    max-height: 800vh;
+    width: 100%;
+    flex: 1;
+    position: absolute;
+    /* background-position: center center; */
+    background-repeat: repeat;
+}
+
+.box-field {
+    background: #FFFFFF !important;
+    box-shadow: inset -4px -4px 12px rgba(253, 255, 255, 0.8), inset 4px 4px 12px rgba(187, 195, 206, 0.6) !important;
+    /* border-radius: 16px !important; */
+
+    /* top: calc(50% - 22px/2 + 3px) !important; */
+
+    font-family: 'IBM Plex Mono' !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 17px !important;
+    line-height: 22px !important;
+    /* identical to box height */
+
+    letter-spacing: 1px !important;
+    border: none !important;
+
+    color: #90A4AE !important;
+
+    border: solid 1px transparent !important;
+    width: 300px;
+    /* min-height: '50%';  */
+    height: 50px;
+    border-radius: 10px; 
+    justify-content: 'center';
+
+    display: flex !important;
+
+    /* padding: 15px !important; */
+    /* align-items: center !important; */
+    /* justify-content: center !important; */
+
+
+}
+
+/* @media (max-width: 768px) {
+    .login-body{
+        min-height: 100vh;
+    }    
+} */
+
+/* .login-paper {
+    width: inherit;
+    height: 135%;
+    background: rgba(246, 246, 246, 0.95) !important;
+    box-shadow: 16px 16px 40px rgba(187, 195, 206, 0.6) !important;
+    border-radius: 16px !important;
+} */
+
+.image-icon {
+    width: 60px !important;
+}
+
+/* .fb {
+    margin-left: 30px;
+}
+
+.google {
+    margin-left: -30px;
+} */
+
+.add-btn {
+
+    background: #9AD0EC !important;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+    border-radius: 16px !important;
+
+    width: 250px;
+    height: 50px;
+
+    font-family: 'IBM Plex Mono' !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 17px !important;
+    line-height: 22px !important;
+    text-transform: none !important;
+    /* identical to box height; */
+
+    text-align: center !important;
+    letter-spacing: 1px !important;
+
+    color: #2C3135 !important;
+
+    display: flex !important;
+    align-items: right !important;
+    justify-content: center !important;
+
+    margin-left: 520px !important;
+    /* margin-bottom: 100px; */
+}
+
+.del-btn {
+
+    background: #E7ACA3 !important;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+    border-radius: 16px !important;
+
+    width: 250px;
+    height: 50px;
+
+    font-family: 'IBM Plex Mono' !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 17px !important;
+    line-height: 22px !important;
+    text-transform: none !important;
+    /* identical to box height; */
+
+    text-align: center !important;
+    letter-spacing: 1px !important;
+
+    color: #2C3135 !important;
+
+    display: flex !important;
+    align-items: right !important;
+    justify-content: center !important;
+
+    margin-left: 520px !important;
+    /* margin-bottom: 100px; */
+}
+
+.decrypt-btn {
+
+    background: #F8F355 !important;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+    border-radius: 16px !important;
+
+    width: 250px;
+    height: 50px;
+
+    font-family: 'IBM Plex Mono' !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 17px !important;
+    line-height: 22px !important;
+    text-transform: none !important;
+    /* identical to box height; */
+
+    text-align: center !important;
+    letter-spacing: 1px !important;
+
+    color: #2C3135 !important;
+
+    display: flex !important;
+    align-items: right !important;
+    justify-content: center !important;
+
+    margin-left: 520px !important;
+    /* margin-bottom: 100px; */
+}
+
+.nav-bar-btn{
+    text-align: 'center';
+    border-radius: 4;
+}
+
+p{  
+    font-weight: '700';
+    letter-spacing: '1px';
+    text-transform: 'capitalize';
+    margin-left: '30px';
+    padding: 10px;
+    font-size: large;
+    font-weight: bold;
+}
