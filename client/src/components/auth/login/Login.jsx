@@ -85,8 +85,14 @@ function Login() {
     }
 
     // execute this if no errors in formData
-    authContext.signin(formData.email, formData.password);
-    
+       // execute this if no errors in formData
+       try {
+        await auth.loginUser(formData.email, formData.password);
+        navigate("/dashboard");
+      } catch (ex) {
+        // display the errors
+        console.log(ex.response.data);
+      }
         
   }  
 
