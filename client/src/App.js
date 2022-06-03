@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import Login from "./components/auth/login/Login";
 import Register from "./components/auth/register/Register";
@@ -7,8 +7,9 @@ import ResetPassword from "./components/auth/resetpassword/ResetPassword";
 import NoPage from "./components/nopage/NoPage";
 import Welcome from "./components/welcome/Welcome";
 import PasswordManager from "./components/passwordmanager/PasswordManager";
-import { AuthProvider, RequireAuth} from "./context/AuthProvider";
-import Dashboard from "./components/dashboard/dashboard";
+import ProtectedRoute from './components/common/protectedRoute';
+import auth from './services/authService';
+import Dashboard from './components/dashboard/dashboard';
 
 class App extends Component {
   state = {};
@@ -33,6 +34,14 @@ class App extends Component {
             element={
               <ProtectedRoute user={user} >
                 <PasswordManager user={user} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="dashboard"
+            element={
+              <ProtectedRoute user={user} >
+                <Dashboard user={user} />
               </ProtectedRoute>
             }
           />
