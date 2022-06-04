@@ -85,7 +85,7 @@ class Dashboard extends React.Component{
                                 </Box>
                             </Box>
                         </FormGroup>
-                        <Button type="submit" className='add-btn'>Add New Password</Button>
+                        <Button href='/addPassword' type="submit" className='add-btn'>Add New Password</Button>
                     </Box>
     
                     <Box maxWidth="xl" fixed sx={{ backgroundColor: '#E1E1E1', height: '20%', borderRadius: 4, paddingBottom: 5, marginTop: 5, marginLeft: 5, marginRight: 5}}>
