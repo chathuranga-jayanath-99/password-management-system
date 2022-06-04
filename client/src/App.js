@@ -10,6 +10,7 @@ import Welcome from "./components/welcome/Welcome";
 import PasswordManager from "./components/passwordmanager/PasswordManager";
 import { AuthProvider, RequireAuth} from "./context/AuthProvider";
 import Dashboard from "./components/dashboard/dashboard";
+import AddPassword from "./components/addPassword/addPassword";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="resetpassword" element={<ResetPassword />} />
             <Route path="passwordmanager" element={<RequireAuth><PasswordManager /></RequireAuth>} />
             <Route path="dashboard" element={<Dashboard />} />
+            <Route path="addPassword" element={<AddPassword />} />
             <Route path="*" element={<NoPage />} />
           </Routes>
         </AuthProvider>
