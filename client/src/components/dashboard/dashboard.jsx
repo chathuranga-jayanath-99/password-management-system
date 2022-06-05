@@ -18,6 +18,7 @@ import background from "../../assets/img/blue.svg";
 import user from '../../assets/img/user.svg';
 import auth from '../../services/authService';
 import { FormGroup, FormHelperText, Paper } from '@mui/material';
+import { Link, NavLink } from 'react-router-dom';
 // import twitter from '../assets/img/Social Twitter.svg';
 // import google from '../assets/img/Social Google.svg';
 // import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
@@ -45,9 +46,11 @@ class Dashboard extends React.Component{
                             <span style={{ margin: '25px', fontSize:'25px', verticalAlign: 'super', fontWeight: 'bold' }}>Software Eng</span>
                         </Box>
                         <Box gridColumn="span 6" sx={{ paddingTop: 5 }}>
-                            <Button className='nav-bar-btn' variant="contained" sx={{ marginRight: '1%', marginLeft: '0.1%'}}>Password Manager</Button>
+                            <Link to="/passwordmanager"><Button className='nav-bar-btn' variant="contained" sx={{ marginRight: '1%', marginLeft: '0.1%'}}>Password Manager</Button></Link>
+                            
                             <Button className='nav-bar-btn' variant="contained" sx={{ marginRight: '1%' }}>Image Manager</Button>
-                            <Button className='nav-bar-btn' variant="contained" sx={{ marginRight: '1%' }}>Logout</Button>
+        
+                            <Link to="/logout"><Button className='nav-bar-btn' variant="contained" sx={{ marginRight: '1%' }}>Logout</Button></Link>
                         </Box>
                     </Box>
     
@@ -85,7 +88,7 @@ class Dashboard extends React.Component{
                                 </Box>
                             </Box>
                         </FormGroup>
-                        <Button href='/addPassword' type="submit" className='add-btn'>Add New Password</Button>
+                        <Button href='/add-password' type="submit" className='add-btn'>Add New Password</Button>
                     </Box>
     
                     <Box maxWidth="xl" fixed sx={{ backgroundColor: '#E1E1E1', height: '20%', borderRadius: 4, paddingBottom: 5, marginTop: 5, marginLeft: 5, marginRight: 5}}>

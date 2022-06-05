@@ -28,8 +28,8 @@ class PasswordManager extends Component {
                             <span style={{ marginLeft: '25px', fontSize: '25px', verticalAlign: 'super', fontWeight: 'bold', textTransform: 'capitalize' }}>{this.state.user.name}</span>
                         </Box>
                         <Box gridColumn="span 6" sx={{ paddingTop: 5 }}>
-                            <Link to="/logout"><Button size="large" variant="contained" sx={{ marginRight: 4, marginLeft: 20 }}>Add New Password</Button></Link>
-                            <Link to="/logout"><Button size="large" variant="contained" sx={{ marginRight: 4 }}>Image Manager</Button></Link>
+                            <Link to="/add-password"><Button size="large" variant="contained" sx={{ marginRight: 4, marginLeft: 20 }}>Add New Password</Button></Link>
+                            <Link to="#"><Button size="large" variant="contained" sx={{ marginRight: 4 }}>Image Manager</Button></Link>
                             <Link to="/logout"> <Button variant="contained" sx={{ marginRight: 4 }} >Logout</Button></Link>
 
                             {/* change below nav-link as necessary, only added to check. */}

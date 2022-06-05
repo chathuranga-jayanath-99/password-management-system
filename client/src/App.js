@@ -7,9 +7,10 @@ import ResetPassword from "./components/auth/resetpassword/ResetPassword";
 import NoPage from "./components/nopage/NoPage";
 import Welcome from "./components/welcome/Welcome";
 import PasswordManager from "./components/passwordmanager/PasswordManager";
+import Dashboard from './components/dashboard/dashboard';
+import AddPassword from './components/addPassword/addPassword';
 import ProtectedRoute from './components/common/protectedRoute';
 import auth from './services/authService';
-import Dashboard from './components/dashboard/dashboard';
 import Logout from './components/auth/Logout';
 
 class App extends Component {
@@ -36,6 +37,14 @@ class App extends Component {
             element={
               <ProtectedRoute user={user} >
                 <PasswordManager user={user} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="add-password"
+            element={
+              <ProtectedRoute user={user} >
+                <AddPassword user={user} />
               </ProtectedRoute>
             }
           />
