@@ -13,7 +13,7 @@ class PasswordManager extends Component {
     state = {
         user: {}
     }
-    componentDidMount() {
+    async componentDidMount() {
         const user = auth.getCurrentUser();
         this.setState({ user })
     }

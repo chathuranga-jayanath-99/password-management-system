@@ -19,6 +19,7 @@ import user from '../../assets/img/user.svg';
 import auth from '../../services/authService';
 import { FormGroup, FormHelperText, Paper } from '@mui/material';
 import { Link, NavLink } from 'react-router-dom';
+import { getPasswords } from "../../services/passwordService"; 
 // import twitter from '../assets/img/Social Twitter.svg';
 // import google from '../assets/img/Social Google.svg';
 // import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
@@ -29,13 +30,21 @@ import { Link, NavLink } from 'react-router-dom';
 
 class Dashboard extends React.Component{
     state = {
-        user: {}
+        user: {},
+        passwords: []
     }
-    componentDidMount() {
+    async componentDidMount() {
         const user = auth.getCurrentUser();
-        this.setState({ user })
+        const { data: passwords } = await getPasswords();
+        this.setState({ user, passwords });
     }
     render(){
+        const passwords = this.state.passwords;
+
+        // uncomment below, and check result and take last 2 of the passwrods(for now... lets change if we got time..) and show them in the page..
+        // console.log(passwords[0]); 
+
+        
         return (
             <div className='body'>
                 <Container fixed maxWidth="sm" sx={{height: 100}}></Container>
@@ -57,7 +66,7 @@ class Dashboard extends React.Component{
                     <h1 style={{ textAlign: 'center', paddingTop: 15 }}>Dashboard</h1>
     
                     <Box maxWidth="xl" fixed sx={{ backgroundColor: '#E1E1E1', minHeight: '20%', maxHeight:'50%', paddingBottom: 5, borderRadius: 4, marginTop: 5, marginLeft: 5, marginRight: 5}}>
-                        <p>Password Stored : </p>
+                        <p>Password Stored : {passwords.length}</p>
                         <p>Frequently Used Passwords</p>
                         {/* <Box maxWidth="xl" margin={4}> */}
                         <FormGroup>
