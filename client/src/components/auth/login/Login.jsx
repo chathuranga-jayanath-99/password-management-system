@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -17,11 +18,12 @@ import fb from '../../../assets/img/Social FB.svg';
 import twitter from '../../../assets/img/Social Twitter.svg';
 import google from '../../../assets/img/Social Google.svg';
 import { useAuth } from '../../../context/AuthProvider';
+import auth from '../../../services/authService';
 
 
 function Login() {
 	const theme = createTheme();
-  
+  const navigate = useNavigate()
 
   let authContext = useAuth();
 
@@ -38,6 +40,8 @@ function Login() {
   React.useEffect(() => {
     console.log(formData);
     console.log(authContext);
+
+    if (auth.getCurrentUser()) return navigate('/dashboard', {replace: true});
   },[formData]);
 
 
@@ -81,8 +85,14 @@ function Login() {
     }
 
     // execute this if no errors in formData
-    authContext.signin(formData.email, formData.password);
-    
+       // execute this if no errors in formData
+       try {
+        await auth.loginUser(formData.email, formData.password);
+        navigate("/dashboard");
+      } catch (ex) {
+        // display the errors
+        console.log(ex.response.data);
+      }
         
   }  
 

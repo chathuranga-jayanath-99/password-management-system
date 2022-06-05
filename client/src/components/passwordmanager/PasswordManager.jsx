@@ -5,15 +5,14 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import user from '../../assets/img/user.svg';
 import CheckboxList from '../a';
-import { logoutUser } from '../../services/authService';
 import auth from '../../services/authService';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class PasswordManager extends Component {
     state = {
         user: {}
     }
-    componentDidMount() {
+    async componentDidMount() {
         const user = auth.getCurrentUser();
         this.setState({ user })
     }
@@ -28,15 +27,9 @@ class PasswordManager extends Component {
                             <span style={{ marginLeft: '25px', fontSize: '25px', verticalAlign: 'super', fontWeight: 'bold', textTransform: 'capitalize' }}>{this.state.user.name}</span>
                         </Box>
                         <Box gridColumn="span 6" sx={{ paddingTop: 5 }}>
-                            <Link to="/logout"><Button size="large" variant="contained" sx={{ marginRight: 4, marginLeft: 20 }}>Add New Password</Button></Link>
-                            <Link to="/logout"><Button size="large" variant="contained" sx={{ marginRight: 4 }}>Image Manager</Button></Link>
+                            <Link to="/dashboard"><Button size="large" variant="contained" sx={{ marginRight: 4, marginLeft: 20 }}>Dashboard</Button></Link>
+                            <Link to="#"><Button size="large" variant="contained" sx={{ marginRight: 4 }}>Image Manager</Button></Link>
                             <Link to="/logout"> <Button variant="contained" sx={{ marginRight: 4 }} >Logout</Button></Link>
-
-                            {/* change below nav-link as necessary, only added to check. */}
-                            {/*
-                                    Logout
-                                 */}
-
                         </Box>
                     </Box>
                     <h1 style={{ textAlign: 'center' }}>Password Manager</h1>

@@ -23,7 +23,7 @@ export function AuthProvider({ children }) {
         try {
             await auth.loginUser(email, password);
             setUser(auth.getCurrentUser());
-            navigate("/passwordmanager");
+            navigate("/dashboard");
         } catch (ex) {
         // display the errors
             console.log(ex.response.data);
@@ -43,7 +43,7 @@ export function AuthProvider({ children }) {
             const response = await userService.register({ name:name, email:email, password:password, gender:"male" });
             auth.loginUserWithJwt(response.headers["x-auth-token"]);
             console.log("success");
-            navigate("/passwordmanager");
+            navigate("/dashboard");
           } catch (ex) {
             // add these to the front end
             console.log(ex);
