@@ -20,7 +20,7 @@ class Password {
 
   static async findAllByUser(userId) {
     const [passwords, _] = await db.execute(
-      "select * from password where user_id=?",
+      "select * from password where user_id=? order by id desc",
       [userId]
     );
 
