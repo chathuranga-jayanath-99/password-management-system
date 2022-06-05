@@ -11,18 +11,12 @@ import snapchat from '../assets/img/Social Snapchat.svg'
 import linkdin from '../assets/img/Social Linkdin.svg'
 import { getPasswords } from '../services/passwordService';
 
-
-// import React from 'react'
-
-
 class CheckboxList extends React.Component {
-
     state = {
         passwords: [],
     }
     async componentDidMount() {
-        // const { data: passwords } = await getPasswords();
-
+        // window.location = '/passwordmanager'
         const { data: passwords } = await getPasswords();
 
         passwords.forEach(function (element) {
@@ -41,9 +35,20 @@ class CheckboxList extends React.Component {
                 return element.logo = snapchat;
             }
         });
-        //console.log(passwords)
-        this.setState({ passwords });
-
+        // console.log(passwords)
+        // const pass = [{
+        //     barLength: 59.321435073598195,
+        //     id: 2,
+        //     iv: "39d2c476bffeba5af38963b5cefa1638",
+        //     logo: "/static/media/Social Google.0e34468f026c50b2e1d363f48b7c07ba.svg",
+        //     password: "fa2ba0a6bb",
+        //     showPassword: false,
+        //     title: "gmail",
+        //     user_id: 3
+        // }]
+        // this.setState({ passwords: pass });
+        // console.log(passwords)
+        this.setState({ passwords })
     }
 
     handleChange = (e, value) => {
