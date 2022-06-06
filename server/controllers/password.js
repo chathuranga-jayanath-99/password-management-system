@@ -39,6 +39,8 @@ async function postPassword(req, res, next) {
   const password = new Password(
     _.pick(req.body, ["userId", "title", "password"])
   );
+  password.addPasswordStrength();
+
   const encrypted = encrypt(password.password);
   password.password = encrypted.password;
   password.iv = encrypted.iv;
