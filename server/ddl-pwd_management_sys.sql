@@ -27,6 +27,7 @@ create table if not EXISTS password (
   title VARCHAR(255) NOT NULL,
   password VARCHAR(1024) NOT NULL,
   iv VARCHAR(255) NOT NULL,
+  strength float,
   foreign key (user_id) 
     references user(id)
 );
@@ -75,18 +76,20 @@ VALUES (
   );
 
 -- password table
-INSERT INTO password (user_id, title, password, iv)
+INSERT INTO password (user_id, title, password, iv, strength)
 VALUES (
     '1',
     "facebook",
     "fa2ba0a6bb",
-    "39d2c476bffeba5af38963b5cefa1638"
+    "39d2c476bffeba5af38963b5cefa1638",
+    0.5
 );
 
-INSERT INTO password (user_id, title, password, iv)
+INSERT INTO password (user_id, title, password, iv, strength)
 VALUES (
     '2',
     "gmail",
     "fa2ba0a6bb",
-    "39d2c476bffeba5af38963b5cefa1638"
+    "39d2c476bffeba5af38963b5cefa1638",
+    0.6
 );

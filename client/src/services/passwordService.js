@@ -17,10 +17,10 @@ export function getPassword(passwordId) {
 
 export function savePassword(password) {
   console.log(password);
-  if (password._id) {
+  if (password.id) {
     const body = { ...password };
     delete body._id;
-    return http.put(passwordUrl(password._id), body);
+    return http.put(passwordUrl(password.id), body);
   }
   return http.post(apiEndpoint, password);
 }

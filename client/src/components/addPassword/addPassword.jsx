@@ -28,11 +28,15 @@ import { FormGroup, FormHelperText, Paper } from '@mui/material';
 // import CheckboxList from './a';
 // import { grid, positions } from '@mui/system';
 // import 'bootstrap/dist/css/bootstrap.css';
+import { Link, useNavigationType } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { savePassword } from './../../services/passwordService';
 
 
 class AddPassword extends React.Component{
     state = {
-        user: {}
+        user: {},
+        data: {}
     }
     componentDidMount() {
         const user = auth.getCurrentUser();
@@ -58,6 +62,33 @@ class AddPassword extends React.Component{
         event.preventDefault();
     };
 
+    handleInputChange = ({ currentTarget: input }) => {
+        const data = { ...this.state.data };
+        data[input.name] = input.value;
+        console.log(this.state);
+        this.setState({ data: data });
+    }
+
+    doSubmit = async () => {
+        console.log(this.state);
+
+        const data = {
+            userId: this.state.user.id.toString(),
+            title: this.state.data.name,
+            password: this.state.data.password
+        }
+        console.log(data);
+        await savePassword(data);
+        // this.props.history.push("/dashboard");
+        this.props.navigate("/dashboard");
+          
+    }
+    handleSubmit = (event) => {
+        event.preventDefault();
+
+        // check errors..
+        this.doSubmit();
+    }
     render(){
         return (
             <div className='body'>
@@ -92,6 +123,7 @@ class AddPassword extends React.Component{
                                     name="name"
                                     autoComplete="name"
                                     autoFocus
+                                    onChange={this.handleInputChange}
                                     className='input-details'
                                     variant="filled"
                                     InputProps={{
@@ -115,6 +147,7 @@ class AddPassword extends React.Component{
                                     type="password"
                                     id="password"
                                     autoComplete="current-password"
+                                    onChange={this.handleInputChange}
                                     className='input-details'
                                     variant="filled"
                                     InputProps={{
@@ -132,11 +165,12 @@ class AddPassword extends React.Component{
                             <TextField
                                     required
                                     margin="normal"        
-                                    name="password"
-                                    label="Password"
+                                    name="confirm-password"
+                                    label="Confirm-Password"
                                     type="password"
-                                    id="password"
+                                    id="confirm-password"
                                     autoComplete="current-password"
+                                    onChange={this.handleInputChange}
                                     className='input-details'
                                     variant="filled"
                                     InputProps={{
@@ -147,12 +181,17 @@ class AddPassword extends React.Component{
                         </Box>
 
                     </FormGroup>
-                    <Button type="submit" className='add-btn'>Add Password</Button>
+                    <Button onClick={this.handleSubmit} type="submit" className='add-btn'>Add Password</Button>
                 </Box>
                 </Box>
             </div>
         );
     }
+}
+
+export function AddPasswordWithRouter(props) {
+    const navigate = useNavigate();
+    return (<AddPassword navigate={navigate} />)
 }
 
 export default AddPassword

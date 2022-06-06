@@ -36,6 +36,7 @@ class Dashboard extends React.Component{
     async componentDidMount() {
         const user = auth.getCurrentUser();
         const { data: passwords } = await getPasswords();
+        console.log(passwords);
         this.setState({ user, passwords });
     }
     render(){
