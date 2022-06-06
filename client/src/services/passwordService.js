@@ -15,6 +15,10 @@ export function getPassword(passwordId) {
   return http.get(passwordUrl(passwordId));
 }
 
+export function viewPassword(passwordId) {
+  return http.get(`${apiEndpoint}/passwords/view-password/${passwordId}`);
+}
+
 export function savePassword(password) {
   console.log(password);
   if (password.id) {
