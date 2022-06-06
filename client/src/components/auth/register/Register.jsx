@@ -122,6 +122,7 @@ function Register() {
       } catch (ex) {
         // add these to the front end
         console.log(ex);
+        setMailError(ex.response.data);
       }
       
   }
