@@ -17,10 +17,14 @@ import fb from '../../../assets/img/Social FB.svg';
 import twitter from '../../../assets/img/Social Twitter.svg';
 import google from '../../../assets/img/Social Google.svg';
 import { useAuth } from '../../../context/AuthProvider';
+import auth from '../../../services/authService';
+import * as userService from "../../../services/userService";
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
 	const theme = createTheme();
-  
+  const navigate = useNavigate();
+
   let authContext = useAuth();
 
   const [formData, setFormData] = React.useState(
@@ -109,8 +113,16 @@ function Register() {
       setPWError(errMsg);
       }
 
-      // need to execute this if no errors 
-      authContext.signup(formData.name, formData.email, formData.password);
+      // need to execute this if no errors
+      // stop below execution if there are errors in the input user given  
+      try {
+        const response = await userService.register({ name:formData.name, email:formData.email, password:formData.password, gender:"male" });
+        auth.loginUserWithJwt(response.headers["x-auth-token"]);
+        navigate("/dashboard");
+      } catch (ex) {
+        // add these to the front end
+        console.log(ex);
+      }
       
   }
 

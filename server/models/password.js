@@ -53,11 +53,11 @@ class Password {
 
   async save() {
     let sql =
-      "insert into password (user_id,title,password,iv) values (?,?,?,?);";
+      "insert into password (user_id,title,password,iv,strength) values (?,?,?,?,?);";
 
     await db.execute(
       sql,
-      [this.userId, this.title, this.password, this.iv],
+      [this.userId, this.title, this.password, this.iv, this.strength],
       (err, results) => {
         if (err) {
           throw err;
@@ -66,6 +66,35 @@ class Password {
         }
       }
     );
+  }
+
+  addPasswordStrength() {
+    this.strength = this.measureStrength(this.password);
+  }
+
+  measureStrength() {
+    // [a-z] 0.25
+    // [A-Z] 0.25
+    // [1-9] 0.25
+    // [!@] 0.25
+
+    const lengths = [
+      (this.password.match(/[0-9]/g) || []).length,
+      (this.password.match(/[A-Z]/g) || []).length,
+      (this.password.match(/[a-z]/g) || []).length,
+      (this.password.match(/[^A-Za-z0-9]/g) || []).length,
+    ];
+    console.log(lengths);
+    const strengths = [];
+
+    lengths.forEach((length) => {
+      const strength = length >= 3 ? 0.25 : (length / 3) * 0.25;
+      strengths.push(strength);
+    });
+
+    return strengths.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue;
+    }, 0);
   }
 }
 
