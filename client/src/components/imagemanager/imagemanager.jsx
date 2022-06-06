@@ -19,8 +19,9 @@ class ImageManager extends React.Component{
     async componentDidMount() {
         const user = auth.getCurrentUser();
 
-        const images = await getImages();
-        this.setState({ user, images });
+        const {data: images} = await getImages();
+        console.log("imagemanager", images[0]);
+        this.setState({ user, images: images[0] });
     }
     render(){
         const { images } = this.state;
