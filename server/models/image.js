@@ -6,7 +6,8 @@ class Image {
         this.id = imageDetails.id,
         this.userId = imageDetails.userId,
         this.title = imageDetails.title,
-        this.encryptedImage = imageDetails.encryptedImage
+        this.image = imageDetails.image
+        this.iv = imageDetails.iv;
     } 
 
     static async findAll() {
@@ -16,7 +17,7 @@ class Image {
     static async findById(id) {
         const sql = `select * from image where id=?;`;
         const [images, _] = await db.execute(sql, [id]);
-
+        return images[0]
         if (images.length > 0) return images[0];
 
         return false;
@@ -35,9 +36,9 @@ class Image {
     }
 
     async save() {
-        let sql = 'insert into image (user_id,title,encrypted_image) values (?,?,?);';
+        let sql = 'insert into image (user_id,title,encrypted_image,iv) values (?,?,?,?);';
 
-        await db.execute(sql, [this.userId,this.title,this.encryptedImage], (err, results) => {
+        await db.execute(sql, [this.userId,this.title,this.image,this.iv], (err, results) => {
             if (err) {
                 throw err;
             }
