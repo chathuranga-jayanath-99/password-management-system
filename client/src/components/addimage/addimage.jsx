@@ -24,6 +24,8 @@ import { FormGroup, FormHelperText, Paper } from '@mui/material';
 // import CheckboxList from './a';
 // import { grid, positions } from '@mui/system';
 // import 'bootstrap/dist/css/bootstrap.css';
+import { Link } from "react-router-dom";
+import { display } from '@mui/system';
 
 
 class AddImage extends React.Component{
@@ -45,8 +47,8 @@ class AddImage extends React.Component{
                             <span style={{ margin: '25px', fontSize:'25px', verticalAlign: 'super', fontWeight: 'bold' }}>Software Eng</span>
                         </Box>
                         <Box gridColumn="span 6" sx={{ paddingTop: 5 }}>
-                            <Button className='nav-bar-btn' variant="contained" sx={{ marginRight: '1%', marginLeft: '0.1%'}}>Password Manager</Button>
-                            <Button className='nav-bar-btn' variant="contained" sx={{ marginRight: '1%' }}>Image Manager</Button>
+                            <Link to='/passwordmanager'><Button className='nav-bar-btn' variant="contained" sx={{ marginRight: '1%', marginLeft: '0.1%'}}>Password Manager</Button></Link>
+                            <Link to='/imagemanager'><Button className='nav-bar-btn' variant="contained" sx={{ marginRight: '1%' }}>Image Manager</Button></Link>
                             <Button className='nav-bar-btn' variant="contained" sx={{ marginRight: '1%' }}>Logout</Button>
                         </Box>
                     </Box>
@@ -54,11 +56,13 @@ class AddImage extends React.Component{
                     <h1 style={{ textAlign: 'center', paddingTop: 15 }}>Add and Encrypt an Image</h1>
     
                     <Box maxWidth="xl" fixed sx={{ backgroundColor: '#E1E1E1', minHeight: '20%', maxHeight:'50%', paddingBottom: 5, borderRadius: 4, marginTop: 5, marginLeft: 5, marginRight: 5}}>
-                        
+                        <span><b>Title</b></span><br></br><input></input><br></br>
+                        <span><b>Description</b></span><br></br><input width="700px"></input><br></br>
+                        <Button sx={{color:'#000000', backgroundColor:'#88FFAA', marginTop:'50px'}}>Pick an image</Button>
                     </Box>
     
                     <Box maxWidth="xl" fixed sx={{ backgroundColor: '#E1E1E1', height: '20%', borderRadius: 4, paddingBottom: 5, marginTop: 5, marginLeft: 5, marginRight: 5}}>
-                        <Button type="submit"className='add-btn'>Encrypt and Add</Button>
+                        <center><Button type="submit" width='250px' sx={{backgroundColor:'#55AAFF', color:'#000000'}}>Encrypt and Add</Button></center>
                     </Box>
                 </Box>
             </div>
