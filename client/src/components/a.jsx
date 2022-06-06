@@ -24,7 +24,6 @@ class CheckboxList extends React.Component {
         passwords.forEach(function (element) {
             element.showPassword = false;
             element.strength = element.strength * 100;
-            // element.logo = getLOGO(element.title);
             if (element.title === 'facebook') {
                 return element.logo = facebook;
             } else if (element.title === 'linkdin') {
