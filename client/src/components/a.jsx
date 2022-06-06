@@ -9,7 +9,7 @@ import google from '../assets/img/Social Google.svg';
 import facebook from '../assets/img/Social FB.svg';
 import snapchat from '../assets/img/Social Snapchat.svg'
 import linkdin from '../assets/img/Social Linkdin.svg'
-import { getPasswords } from '../services/passwordService';
+import { getPasswords, viewPassword } from '../services/passwordService';
 
 class CheckboxList extends React.Component {
     state = {
@@ -17,11 +17,13 @@ class CheckboxList extends React.Component {
     }
     async componentDidMount() {
         // window.location = '/passwordmanager'
-        const { data: passwords } = await getPasswords();
 
+        const { data: passwords } = await getPasswords();
+        // const pas = await viewPassword(2);
+        // console.log(pas)
         passwords.forEach(function (element) {
             element.showPassword = false;
-            element.barLength = 100 * Math.random(1);
+            element.strength = element.strength * 100;
             // element.logo = getLOGO(element.title);
             if (element.title === 'facebook') {
                 return element.logo = facebook;
@@ -35,9 +37,10 @@ class CheckboxList extends React.Component {
                 return element.logo = snapchat;
             }
         });
+
         // console.log(passwords)
         // const pass = [{
-        //     barLength: 59.321435073598195,
+        //     strength: 59.321435073598195,
         //     id: 2,
         //     iv: "39d2c476bffeba5af38963b5cefa1638",
         //     logo: "/static/media/Social Google.0e34468f026c50b2e1d363f48b7c07ba.svg",
@@ -59,7 +62,9 @@ class CheckboxList extends React.Component {
         this.setState({ passwords: newValues })
         // setValues({ ...values, [prop]: event.target.value });
     };
-    handleClickShowPassword = (value) => {
+    async handleClickShowPassword(value) {
+        // const pas = await viewPassword(2);
+        // console.log(value)
         const newValues = this.state.passwords;
         console.log(value)
         const index = newValues.indexOf(value);
@@ -106,24 +111,25 @@ class CheckboxList extends React.Component {
                                         onChange={(e) => this.handleChange(e, value)}
                                         endAdornment={
                                             <InputAdornment position="end">
-                                                <IconButton
+                                                {/* <IconButton
                                                     aria-label="toggle password visibility"
                                                     onClick={() => this.handleClickShowPassword(value)}
                                                     onMouseDown={this.handleMouseDownPassword}
                                                     edge="end"
                                                 >
-                                                    {value.showPassword ? <VisibilityOff /> : <Visibility />}
-                                                </IconButton>
+                                                     {value.showPassword ? <VisibilityOff /> : <Visibility />} 
+                                                </IconButton> */}
                                             </InputAdornment>
                                         }
                                         label="Password"
                                     />
                                 </Box>
                                 <Box gridColumn="span 4" sx={{ paddingTop: 3 }}>
-                                    <LinearProgress variant="determinate" color={this.handleColorChange(value.barLength)} value={value.barLength} style={{ marginLeft: '70px', width: "80%" }} />
+                                    <LinearProgress variant="determinate" color={this.handleColorChange(value.strength)} value={value.strength} style={{ marginLeft: '80px', width: "75%" }} />
                                 </Box>
                                 <Box gridColumn="span 2">
-                                    <Button size="large" variant="contained" sx={{ marginLeft: 15, borderRadius: 5 }}>Analyze</Button>
+                                    <Button size="large" variant="contained" sx={{ marginLeft: 15, borderRadius: 5 }} onClick={() => this.handleClickShowPassword(value)}
+                                        onMouseDown={this.handleMouseDownPassword}>Decrypt</Button>
                                 </Box>
                             </Box>
                         );
