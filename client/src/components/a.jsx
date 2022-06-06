@@ -19,8 +19,7 @@ class CheckboxList extends React.Component {
         // window.location = '/passwordmanager'
 
         const { data: passwords } = await getPasswords();
-        // const pas = await viewPassword(2);
-        // console.log(pas)
+
         passwords.forEach(function (element) {
             element.showPassword = false;
             element.strength = element.strength * 100;
@@ -52,7 +51,14 @@ class CheckboxList extends React.Component {
         // console.log(passwords)
         this.setState({ passwords })
     }
-
+    async encryptPassword(value) {
+        const pas = await viewPassword(value.id);
+        const newValues = this.state.passwords;
+        const index = newValues.indexOf(value);
+        newValues[index].password = pas.data
+        console.log(pas)
+        this.setState({ passwords: newValues })
+    }
     handleChange = (e, value) => {
         const newValues = this.state.passwords;
         const index = newValues.indexOf(value);
@@ -61,11 +67,9 @@ class CheckboxList extends React.Component {
         this.setState({ passwords: newValues })
         // setValues({ ...values, [prop]: event.target.value });
     };
-    async handleClickShowPassword(value) {
-        // const pas = await viewPassword(2);
-        // console.log(value)
+    handleClickShowPassword(value) {
+        this.encryptPassword(value)
         const newValues = this.state.passwords;
-        console.log(value)
         const index = newValues.indexOf(value);
         newValues[index].showPassword = !newValues[index].showPassword;
         this.setState({ passwords: newValues })
