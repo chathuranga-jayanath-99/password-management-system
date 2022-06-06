@@ -52,7 +52,7 @@ class App extends Component {
             path="dashboard"
             element={
               <ProtectedRoute user={user} >
-                <Dashboard user={user} />
+                <Dashboard/>
               </ProtectedRoute>
             }
           />
