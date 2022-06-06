@@ -39,21 +39,21 @@ class Dashboard extends React.Component {
         console.log("user dahsbord: ", user);
         const { data: passwords } = await getPasswords();
 
-        passwords.forEach(function (element) {
-            element.showPassword = false;
-            // element.logo = getLOGO(element.title);
-            if (element.title === 'facebook') {
-                return element.logo = facebook;
-            } else if (element.title === 'linkdin') {
-                return element.logo = linkdin;
-            } else if (element.title === 'twitter') {
-                return element.logo = twitter;
-            } else if (element.title === 'gmail') {
-                return element.logo = google;
-            } else if (element.title === 'snapchat') {
-                return element.logo = snapchat;
-            }
-        });
+        // passwords.forEach(function (element) {
+        //     element.showPassword = false;
+        //     // element.logo = getLOGO(element.title);
+        //     if (element.title === 'facebook') {
+        //         return element.logo = facebook;
+        //     } else if (element.title === 'linkdin') {
+        //         return element.logo = linkdin;
+        //     } else if (element.title === 'twitter') {
+        //         return element.logo = twitter;
+        //     } else if (element.title === 'gmail') {
+        //         return element.logo = google;
+        //     } else if (element.title === 'snapchat') {
+        //         return element.logo = snapchat;
+        //     }
+        // });
         console.log(passwords)
         this.setState({ user, passwords });
     }

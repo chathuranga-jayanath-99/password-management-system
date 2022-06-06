@@ -12,10 +12,7 @@ class Password {
 
   static async findAll() {
     const [passwords, _] = await db.execute("select * from password;");
-
-    if (passwords.length > 0) return passwords;
-
-    return false;
+    return passwords;
   }
 
   static async findAllByUser(userId) {
@@ -23,10 +20,7 @@ class Password {
       "select * from password where user_id=? order by id desc",
       [userId]
     );
-
-    if (passwords.length > 0) return passwords;
-
-    return false;
+    return passwords;
   }
 
   static async findById(id) {
