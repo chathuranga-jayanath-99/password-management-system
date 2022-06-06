@@ -11,7 +11,7 @@ class Image {
     } 
 
     static async findAll() {
-        return db.execute('select * from image;');
+        return db.execute('select id,user_id,title from image;');
     }
 
     static async findById(id) {

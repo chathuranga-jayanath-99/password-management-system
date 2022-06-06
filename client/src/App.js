@@ -19,7 +19,6 @@ import auth from "./services/authService";
 import Logout from "./components/auth/Logout";
 import ImageManager from "./components/imagemanager/imagemanager";
 import AddImage from "./components/addimage/addimage";
-import ImageForm from "./components/imageForm";
 
 class App extends Component {
   state = {};
@@ -76,7 +75,7 @@ class App extends Component {
             path="addimage"
             element={
               <ProtectedRoute user={user}>
-                <ImageForm user={user} />
+                <AddImage user={user} />
               </ProtectedRoute>
             }
           />

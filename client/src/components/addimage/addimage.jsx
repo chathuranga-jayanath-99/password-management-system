@@ -1,4 +1,6 @@
 import React from "react";
+import Joi from "joi-browser";
+import Form from "../common/form";
 import "./addimage.css";
 // import Avatar from '@mui/material/Avatar';
 import Button from "@mui/material/Button";
@@ -28,14 +30,40 @@ import { Link } from "react-router-dom";
 import { display } from "@mui/system";
 import { saveImage } from './../../services/imageService';
 
-class AddImage extends React.Component {
+class AddImage extends Form {
   state = {
     user: {},
+    name: null,
+    image: null,
   };
+
+  schema = {
+    userId: Joi.string().label("userId"),
+    title: Joi.string().label("title"),
+    image: Joi.string().label("image"),
+  };
+
+
   componentDidMount() {
     const user = auth.getCurrentUser();
     this.setState({ user });
   }
+
+  send = async (event) => {
+    console.log("hey");
+    const user = this.props.user;
+
+    const data = new FormData();
+    data.append("userId", user.id );
+    data.append("name", this.state.name);
+    data.append("image", this.state.image);
+
+    console.log(data);
+    await saveImage(data);
+    // axios
+    //   .post("http://localhost:5000/api/images", data)
+    //   .then((res) => console.log(res));
+  };
 
   doSubmit = async (e) => {
     try {
@@ -50,16 +78,6 @@ class AddImage extends React.Component {
       fd.append("image", this.state.image, this.state.image.name);
       await saveImage(fd);
     } catch (ex) {}
-  };
-
-  send = async (event) => {
-    console.log("hey");
-    const data = new FormData();
-    data.append("name", this.state.name);
-    data.append("image", this.state.image);
-
-    console.log(data);
-    await saveImage(data);
   };
 
   handleNameChange = (e) => {

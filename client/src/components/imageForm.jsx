@@ -46,8 +46,10 @@ class ImageForm extends Form {
 
   send = async (event) => {
     console.log("hey");
+    const user = this.props.user;
+
     const data = new FormData();
-    // data.append("userId", this.state.user.id );
+    data.append("userId", user.id );
 
     data.append("name", this.state.name);
     data.append("image", this.state.image);

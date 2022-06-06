@@ -18,11 +18,10 @@ async function getImage(req, res, next) {
 
 async function postImage(req, res, next) {
   const file = req.file.buffer.toString("base64");
-  const name = req.body.name;
 
   const data = {
-    userId: "1",
-    title: name,
+    userId: req.body.userId,
+    title: req.body.name,
     image: file,
   };
 
