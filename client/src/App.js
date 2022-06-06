@@ -12,7 +12,7 @@ import AddPassword from './components/addPassword/addPassword';
 import ProtectedRoute from './components/common/protectedRoute';
 import auth from './services/authService';
 import Logout from './components/auth/Logout';
-import ImageManager from './components/addimage/addimage';
+import ImageManager from './components/imagemanager/imagemanager';
 import AddImage from './components/addimage/addimage';
 
 class App extends Component {
@@ -61,17 +61,13 @@ class App extends Component {
           <Route
             path="imagemanager"
             element={
-              <ProtectedRoute user={user} >
-                <ImageManager user={user} />
-              </ProtectedRoute>
+              <ImageManager user={user} />
             }
           />
           <Route
             path="addimage"
             element={
-              <ProtectedRoute user={user} >
-                <AddImage user={user} />
-              </ProtectedRoute>
+              <AddImage user={user} />
             }
           />
           <Route path="*" element={<NoPage />} />

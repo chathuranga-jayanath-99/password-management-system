@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from "react-router-dom";
 import {getImages} from '../services/imageService';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Button';
@@ -15,7 +16,7 @@ class ImageList extends React.Component{
     }
 
     render(){
-        if(this.state.images.length==0) return (<p><center><h1>Encrypted image list is empty.\n</h1></center><center><Link to='/addimage'><Button type="submit" className='add_btn'>Add</Button></Link></center></p>) 
+        if(this.state.images.length==0) return (<p><center><h1>Encrypted image list is empty.</h1></center><center><Link to='/addimage'><Button type="submit" className='add_btn'>Add</Button></Link></center></p>) 
         return(
             <Box sx={{backgroundColor:'#333333', width:'100%'}}>
                 {this.state.images.map((value) => {
