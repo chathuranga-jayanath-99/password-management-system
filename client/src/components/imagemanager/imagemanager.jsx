@@ -9,16 +9,21 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import { Link, NavLink } from 'react-router-dom';
 import ImageList from '../imagelist';
+import { getImages } from "../../services/imageService";
 
 class ImageManager extends React.Component{
     state = {
-        user: {}
+        user: {},
+        images: [],
     }
-    componentDidMount() {
+    async componentDidMount() {
         const user = auth.getCurrentUser();
-        this.setState({ user })
+
+        const images = await getImages();
+        this.setState({ user, images });
     }
     render(){
+        const { images } = this.state;
         return (
             <div className='body'>
                 <Container fixed maxWidth="sm" sx={{height: 100}}></Container>
@@ -38,7 +43,7 @@ class ImageManager extends React.Component{
                     <h1 style={{ textAlign: 'center', paddingTop: 15 }}>Image Manager</h1>
     
                     <Box maxWidth="xl" fixed sx={{ backgroundColor: '#E1E1E1', minHeight: '20%', maxHeight:'50%', paddingBottom: 5, borderRadius: 4, marginTop: 5, marginLeft: 5, marginRight: 5}}>
-                        <ImageList />
+                        <ImageList images={images} />
                     </Box>
 
 

@@ -18,6 +18,9 @@ class ImageList extends React.Component{
     }
 
     render(){
+        const { images } = this.props;
+        console.log(images);
+
         if(this.state.images.length==0){
             return(<div><p>No items to display.</p><center><Link to='/addimage'><Button type="submit" width='250px' sx={{backgroundColor:'#55AAFF', color:'#000000'}}>Add an image</Button></Link></center></div>);
         } else{

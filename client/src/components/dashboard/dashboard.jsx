@@ -90,7 +90,7 @@ class Dashboard extends React.Component {
                         <Box gridColumn="span 6" sx={{ paddingTop: 5 }}>
                             <Link to="/passwordmanager"><Button className='nav-bar-btn' variant="contained" sx={{ marginRight: '7%', marginLeft: '0.1%' }}>Password Manager</Button></Link>
 
-                            <Button className='nav-bar-btn' variant="contained" sx={{ marginRight: '7%' }}>Image Manager</Button>
+                            <Link to="/imagemanager"><Button className='nav-bar-btn' variant="contained" sx={{ marginRight: '7%' }}>Image Manager</Button></Link>
 
                             <Link to="/logout"><Button className='nav-bar-btn' variant="contained" sx={{ marginRight: '7%' }}>Logout</Button></Link>
                         </Box>
