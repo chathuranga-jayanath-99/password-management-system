@@ -21,7 +21,7 @@ async function postImage(req, res, next) {
   const name = req.body.name;
 
   const data = {
-    // userId: req.body.,
+    userId: "1",
     title: name,
     image: file,
   };

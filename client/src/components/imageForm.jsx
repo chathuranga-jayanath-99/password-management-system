@@ -48,6 +48,7 @@ class ImageForm extends Form {
     console.log("hey");
     const data = new FormData();
     // data.append("userId", this.state.user.id );
+
     data.append("name", this.state.name);
     data.append("image", this.state.image);
 
