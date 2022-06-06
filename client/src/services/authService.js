@@ -13,10 +13,12 @@ export async function loginUser(email, password) {
     password,
   });
   localStorage.setItem(tokenKey, jwt);
+  http.setJwt(getJwt());
 }
 
 export function loginUserWithJwt(jwt) {
   localStorage.setItem(tokenKey, jwt);
+  http.setJwt(getJwt());
 }
 
 export function logoutUser() {
