@@ -15,6 +15,10 @@ export function getImage(imageId) {
   return http.get(imageUrl(imageId));
 }
 
+export function viewImage(imageId) {
+  return http.get(`${apiEndpoint}/view-image/${imageId}`);
+}
+
 export function saveImage(image) {
   console.log(image);
   if (image._id) {
@@ -23,4 +27,8 @@ export function saveImage(image) {
     return http.put(imageUrl(image._id), body);
   }
   return http.post(apiEndpoint, image);
+}
+
+export function deleteImage(imageId) {
+  return http.delete(`${apiEndpoint}/${imageId}`);
 }

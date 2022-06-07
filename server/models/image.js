@@ -48,6 +48,13 @@ class Image {
         });
     }
 
+    static async deleteById(id) {
+        const sql = "delete from image where id = ?;";
+        const res = await db.execute(sql, [id]);
+
+        console.log(res);
+    } 
+
 }
 
 function validateImage(image){

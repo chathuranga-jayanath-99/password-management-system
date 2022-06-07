@@ -5,43 +5,42 @@ import { getPasswords } from "../services/passwordService";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Button";
 import { height, width } from "@mui/system";
-import { viewPassword } from './../services/passwordService';
+import { viewPassword } from "./../services/passwordService";
 
 class ImageList extends React.Component {
   state = {
-    images: []
+    // images: []
   };
 
   async componentDidMount() {
-    const { images } = this.props;
-    console.log(images);
-    images.forEach(image => {
-        image.decrypted = false;
-    });
-
-    this.setState( {images} );
+    // const { images } = this.props;
+    // console.log(images);
+    // images.forEach(image => {
+    //     image.decrypted = false;
+    // });
+    // this.setState( {images} );
   }
 
-  decryptAndShow = async (id) => {
-      console.log("decrypt: ", id);
+  // decryptAndShow = async (id) => {
+  //     console.log("decrypt: ", id);
 
-    //   const decryptedImage = await viewPassword(id);
-      console.log(decryptedImage);
-  }
+  //   //   const decryptedImage = await viewPassword(id);
+  //     // console.log(decryptedImage);
+  // }
 
-  handleClick = (image)  => {
-    console.log(this.state.images);
-      const newImages = [...this.state.images];
-      const index = newImages.indexOf(image);
-      console.log(newImages);
-      console.log(newImages[index]);
-    // images[index].decrypted = !images[index].decrypted;
-    // this.decryptAndShow(image.id);
-    // this.setState({images});
-  }
+  // handleClick = (image)  => {
+  //   console.log(this.state.images);
+  //     const newImages = [...this.state.images];
+  //     const index = newImages.indexOf(image);
+  //     console.log(newImages);
+  //     console.log(newImages[index]);
+  //   // images[index].decrypted = !images[index].decrypted;
+  //   // this.decryptAndShow(image.id);
+  //   // this.setState({images});
+  // }
 
   render() {
-    const { images } = this.props;
+    const { images, onDecrypt, onDelete } = this.props;
     console.log("imagelist", images);
 
     if (images.length == 0) {
@@ -74,7 +73,7 @@ class ImageList extends React.Component {
                     <p>{image.title}</p>
                     <p>
                       <Button
-                        onClick={() => this.handleClick(image)}
+                        onClick={() => onDecrypt(image)}
                         sx={{
                           backgroundColor: "#88FFAA",
                           marginTop: "10px",
@@ -83,7 +82,9 @@ class ImageList extends React.Component {
                       >
                         Decrypt
                       </Button>
+
                       <Button
+                        onClick={() => onDelete(image)}
                         sx={{
                           backgroundColor: "#FF6688",
                           marginTop: "10px",
@@ -92,13 +93,18 @@ class ImageList extends React.Component {
                       >
                         Delete
                       </Button>
-                      <div>
-                          {image.decrypted && 
-                          <img key={"img"+image.id} src="" style={{ width: "100px", height: "100px" }} alt="" />
-                        }
-                      </div>
                     </p>
                   </Box>
+                  <div>
+                    {image.decrypted && (
+                      <img
+                        key={"img" + image.id}
+                        src={"data:image/png;base64," + image.src}
+                        style={{ width: "640px", height: "500px" }}
+                        alt=""
+                      />
+                    )}
+                  </div>
                 </p>
               );
             })}
