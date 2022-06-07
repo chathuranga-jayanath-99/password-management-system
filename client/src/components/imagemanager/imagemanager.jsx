@@ -25,6 +25,7 @@ class ImageManager extends React.Component {
     console.log("imagemanager", images);
 
     if(images) {
+      console.log("image", images);
       images.forEach((image) => {
         image.decrypted = false;
         image.src = "";

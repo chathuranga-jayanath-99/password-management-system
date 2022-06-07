@@ -15,7 +15,7 @@ class Image {
     }
 
     static async findAllByUser(userId) {
-        const [images, _] = await db.execute(
+        const images = await db.execute(
           "select id,user_id,title from image where user_id=? order by id desc",
           [userId]
         );
