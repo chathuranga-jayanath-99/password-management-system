@@ -22,12 +22,14 @@ class ImageManager extends React.Component {
 
     const { data } = await getImages();
     const images = data[0];
-    // console.log("imagemanager", images);
+    console.log("imagemanager", images);
 
-    images.forEach((image) => {
-      image.decrypted = false;
-      image.src = "";
-    });
+    if(images) {
+      images.forEach((image) => {
+        image.decrypted = false;
+        image.src = "";
+      });
+    }
     // console.log("imagemanager after add attr: ", images);
     this.setState({ user, images: images });
   }
