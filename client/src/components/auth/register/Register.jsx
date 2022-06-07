@@ -1,18 +1,21 @@
 import React from 'react';
 import './Register.css';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import {Button, 
+  CssBaseline, 
+  Link, 
+  Grid, 
+  Box, 
+  Typography, 
+  Container, 
+  TextField, 
+  Paper, 
+  FormHelperText, 
+  InputLabel, 
+  FormControl, 
+  MenuItem, 
+  Select} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import background from "../../../assets/img/blue.svg";
-import { Paper, FormHelperText } from '@mui/material';
 import fb from '../../../assets/img/Social FB.svg';
 import twitter from '../../../assets/img/Social Twitter.svg';
 import google from '../../../assets/img/Social Google.svg';
@@ -30,12 +33,14 @@ function Register() {
   const [formData, setFormData] = React.useState(
     {name: "",
     email: "",
+    gender: "",
     password: "",
   });
 
   const [mailError, setMailError] = React.useState("");
   const [pwError, setPWError] = React.useState("");
   const [nameError, setNameError] = React.useState("");
+  const [genderError, setGenderError] = React.useState("");
 
   React.useEffect(() => {
     console.log(formData)
@@ -49,6 +54,11 @@ function Register() {
   const handleEmail = (event) => {
     setFormData({...formData, email: event.target.value});
     setMailError("");
+  }
+
+  const handleGender = (event) => {
+    setFormData({...formData, gender: event.target.value});
+    setGenderError("");
   }
 
   const handlePassword = (event) => {
@@ -74,6 +84,10 @@ function Register() {
 
     if (formData.password === '') {
       setPWError("Required");
+    }
+
+    if (formData.gender === '') {
+      setGenderError("Required");
     }
 
     if (formData.email === '') {
@@ -197,7 +211,7 @@ function Register() {
               onChange={handleName}
 
             />
-            <FormHelperText className="text-danger" error sx={{paddingLeft: 1}}>{nameError}</FormHelperText>
+            {nameError !== "" ? <FormHelperText className="text-danger" error sx={{paddingLeft: 1, marginBottom: -3, marginTop: -1}}>{nameError}</FormHelperText> : null}
 
             <TextField
               margin="normal"
@@ -216,7 +230,31 @@ function Register() {
               }}
               onChange={handleEmail}
             />
-            <FormHelperText className="text-danger" error sx={{paddingLeft: 1}}>{mailError}</FormHelperText>
+            {mailError !== "" ? <FormHelperText className="text-danger" error sx={{paddingLeft: 1, marginBottom: -1, marginTop: -2}}>{mailError}</FormHelperText> : null}
+
+            <FormControl 
+              fullWidth 
+              variant="filled"
+              className="text-field"
+             >
+              <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={formData.gender}
+                label="Gender"
+                onChange={handleGender}
+                required            
+                disableUnderline
+              >
+                <MenuItem value="male">Male</MenuItem>
+                <MenuItem value="female">Female</MenuItem>
+              </Select>
+
+              {genderError !== "" ? <FormHelperText className="text-danger" error sx={{marginLeft: 0, marginBottom: 4, marginTop: -1.5}}>{genderError}</FormHelperText>: null}
+
+            </FormControl>
+           
 
             <TextField
               margin="normal"
@@ -234,7 +272,7 @@ function Register() {
               }}
               onChange={handlePassword}
             />
-            <FormHelperText className="text-danger" error sx={{paddingLeft: 1}}>{pwError}</FormHelperText>
+            {pwError !== "" ? <FormHelperText className="text-danger" error sx={{paddingLeft: 1, marginBottom: -1, marginTop: -2}}>{pwError}</FormHelperText>: null}
            
             <Button
               type="submit"
@@ -247,7 +285,7 @@ function Register() {
               Register
             </Button>
 
-          <br/>
+
               
                 <Link href="/login" variant="body2" className='login-acc' sx={{display:'flex', alignItems:'center', justifyContent:'center'}}>
                     Already have an account? Login
