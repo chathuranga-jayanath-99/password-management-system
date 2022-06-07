@@ -138,13 +138,13 @@ class ImageManager extends React.Component {
                   Password Manager
                 </Button>
               </Link>
-              <Link to="/logout">
+              <Link to="/dashboard">
                 <Button
                   className="nav-bar-btn"
                   variant="contained"
                   sx={{ marginRight: "1%" }}
                 >
-                  Logout
+                  Back
                 </Button>
               </Link>
             </Box>
