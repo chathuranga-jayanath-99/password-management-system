@@ -15,6 +15,10 @@ export function getImage(imageId) {
   return http.get(imageUrl(imageId));
 }
 
+export function viewImage(imageId) {
+  return http.get()
+}
+
 export function saveImage(image) {
   console.log(image);
   if (image._id) {

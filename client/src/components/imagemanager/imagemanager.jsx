@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import { Link, NavLink } from 'react-router-dom';
 import ImageList from '../imagelist';
 import { getImages } from "../../services/imageService";
+// import { viewI}
 
 class ImageManager extends React.Component{
     state = {
@@ -19,10 +20,31 @@ class ImageManager extends React.Component{
     async componentDidMount() {
         const user = auth.getCurrentUser();
 
-        const {data: images} = await getImages();
-        console.log("imagemanager", images[0]);
-        this.setState({ user, images: images[0] });
+        const {data } = await getImages();
+        const images = data[0] 
+        console.log("imagemanager", images);
+
+        images.forEach(image => {
+            image.decrypted = false;
+            image.src = "";
+        });
+        console.log("imagemanager after add attr: ", images);
+        this.setState({ user, images: images });
     }
+
+    handleDecrypt = (image) => {
+        // console.log("handleDecrypt:",image);
+        const images = [...this.state.images];
+        const index = images.indexOf(image);
+        images[index] = { ...images[index] };
+
+        if (images[index].decrypted === false) {
+            images[index].decrypted = true;
+            
+            console.log(images[index]);
+        }
+    }
+
     render(){
         const { images } = this.state;
         return (
@@ -44,7 +66,7 @@ class ImageManager extends React.Component{
                     <h1 style={{ textAlign: 'center', paddingTop: 15 }}>Image Manager</h1>
     
                     <Box maxWidth="xl" fixed sx={{ backgroundColor: '#E1E1E1', minHeight: '20%', maxHeight:'50%', paddingBottom: 5, borderRadius: 4, marginTop: 5, marginLeft: 5, marginRight: 5}}>
-                        <ImageList images={images} />
+                        <ImageList images={images} onDecrypt={this.handleDecrypt} />
                     </Box>
 
 
