@@ -20,11 +20,7 @@ class ImageForm extends Form {
     try {
       e.preventDefault();
 
-      // console.log(this.state.data);
 
-      // const data = { image: this.state.data.image };
-      // await saveImage(data);
-      //
       const fd = new FormData();
       fd.append("image", this.state.image, this.state.image.name);
       await saveImage(fd);

@@ -47,13 +47,13 @@ class AddPassword extends React.Component{
         const newValues = this.state.passwords;
         const index = newValues.indexOf(value);
         newValues[index].password = e.target.value;
-        // console.log(newValues);
+
         this.setState({ passwords: newValues })
         // setValues({ ...values, [prop]: event.target.value });
     };
     handleClickShowPassword = (value) => {
         const newValues = this.state.passwords;
-        console.log(value)
+
         const index = newValues.indexOf(value);
         newValues[index].showPassword = !newValues[index].showPassword;
         this.setState({ passwords: newValues })
@@ -65,19 +65,16 @@ class AddPassword extends React.Component{
     handleInputChange = ({ currentTarget: input }) => {
         const data = { ...this.state.data };
         data[input.name] = input.value;
-        console.log(this.state);
         this.setState({ data: data });
     }
 
     doSubmit = async () => {
-        console.log(this.state);
 
         const data = {
             userId: this.state.user.id.toString(),
             title: this.state.data.name,
             password: this.state.data.password
         }
-        console.log(data);
         await savePassword(data);
         // this.props.history.push("/dashboard");
         this.props.navigate("/dashboard");

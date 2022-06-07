@@ -41,24 +41,9 @@ class Dashboard extends React.Component {
   async componentDidMount() {
     const user = auth.getCurrentUser();
     // const {user} = this.props;
-    console.log("user dahsbord: ", user);
+    
     const { data: passwords } = await getPasswords();
 
-    // passwords.forEach(function (element) {
-    //     element.showPassword = false;
-    //     // element.logo = getLOGO(element.title);
-    //     if (element.title === 'facebook') {
-    //         return element.logo = facebook;
-    //     } else if (element.title === 'linkdin') {
-    //         return element.logo = linkdin;
-    //     } else if (element.title === 'twitter') {
-    //         return element.logo = twitter;
-    //     } else if (element.title === 'gmail') {
-    //         return element.logo = google;
-    //     } else if (element.title === 'snapchat') {
-    //         return element.logo = snapchat;
-    //     }
-    // });
     console.log(passwords);
     this.setState({ user, passwords });
   }
@@ -66,7 +51,7 @@ class Dashboard extends React.Component {
     const newValues = this.state.passwords;
     const index = newValues.indexOf(value);
     newValues[index].password = e.target.value;
-    // console.log(newValues);
+
     this.setState({ passwords: newValues });
     // setValues({ ...values, [prop]: event.target.value });
   };
@@ -80,9 +65,8 @@ class Dashboard extends React.Component {
   render() {
     const Newpasswords = [...this.state.passwords];
 
-    // uncomment below, and check result and take last 2 of the passwrods(for now... lets change if we got time..) and show them in the page..
     Newpasswords.length = 2;
-    // console.log(this.state.passwords)
+
     return (
       <div className="body">
         <Container fixed maxWidth="sm" sx={{ height: 100 }}></Container>

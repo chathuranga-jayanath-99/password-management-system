@@ -50,18 +50,20 @@ class AddImage extends Form {
   }
 
   send = async (event) => {
-    console.log("hey");
-    const user = this.props.user;
-    console.log("user", user);
-    const data = new FormData();
-    data.append("userId", user.id);
-    data.append("name", this.state.name);
-    data.append("image", this.state.image);
 
-    console.log(data);
-    await saveImage(data);
-    console.log("image saved");
-    this.props.navigate("/imagemanager");
+    const user = this.state.user;
+
+    if (user) {
+      const data = new FormData();
+      data.append("userId", user.id);
+      data.append("name", this.state.name);
+      data.append("image", this.state.image);
+  
+      await saveImage(data);
+      console.log("image saved");
+      this.props.navigate("/imagemanager");
+    }
+
     // axios
     //   .post("http://localhost:5000/api/images", data)
     //   .then((res) => console.log(res));
@@ -71,11 +73,6 @@ class AddImage extends Form {
     try {
       e.preventDefault();
 
-      // console.log(this.state.data);
-
-      // const data = { image: this.state.data.image };
-      // await saveImage(data);
-      //
       const fd = new FormData();
       fd.append("image", this.state.image, this.state.image.name);
       await saveImage(fd);

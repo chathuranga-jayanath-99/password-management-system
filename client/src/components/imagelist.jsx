@@ -13,31 +13,8 @@ class ImageList extends React.Component {
   };
 
   async componentDidMount() {
-    // const { images } = this.props;
-    // console.log(images);
-    // images.forEach(image => {
-    //     image.decrypted = false;
-    // });
-    // this.setState( {images} );
+
   }
-
-  // decryptAndShow = async (id) => {
-  //     console.log("decrypt: ", id);
-
-  //   //   const decryptedImage = await viewPassword(id);
-  //     // console.log(decryptedImage);
-  // }
-
-  // handleClick = (image)  => {
-  //   console.log(this.state.images);
-  //     const newImages = [...this.state.images];
-  //     const index = newImages.indexOf(image);
-  //     console.log(newImages);
-  //     console.log(newImages[index]);
-  //   // images[index].decrypted = !images[index].decrypted;
-  //   // this.decryptAndShow(image.id);
-  //   // this.setState({images});
-  // }
 
   render() {
     const { images, onDecrypt, onDelete } = this.props;

@@ -81,13 +81,9 @@ async function putImage(req, res, next) {
 }
 
 async function viewImage(req, res, next) {
-  // console.log("viewImage");
-  // console.log("user", req.user);
   const user = req.user;
 
   const imageObj = await Image.findById(req.params.id);
-  console.log("imageObj", imageObj);
-  console.log("encrypted_image", imageObj.encrypted_image);
   
   if (user.role === ROLE.USER && user.id === imageObj.user_id) {
     const decryptedImage = decrypt({
