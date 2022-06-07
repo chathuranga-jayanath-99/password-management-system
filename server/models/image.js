@@ -6,17 +6,18 @@ class Image {
         this.id = imageDetails.id,
         this.userId = imageDetails.userId,
         this.title = imageDetails.title,
-        this.encryptedImage = imageDetails.encryptedImage
+        this.image = imageDetails.image
+        this.iv = imageDetails.iv;
     } 
 
     static async findAll() {
-        return db.execute('select * from image;');
+        return db.execute('select id,user_id,title from image;');
     }
 
     static async findById(id) {
         const sql = `select * from image where id=?;`;
         const [images, _] = await db.execute(sql, [id]);
-
+        return images[0]
         if (images.length > 0) return images[0];
 
         return false;
@@ -35,9 +36,9 @@ class Image {
     }
 
     async save() {
-        let sql = 'insert into image (user_id,title,encrypted_image) values (?,?,?);';
+        let sql = 'insert into image (user_id,title,encrypted_image,iv) values (?,?,?,?);';
 
-        await db.execute(sql, [this.userId,this.title,this.encryptedImage], (err, results) => {
+        await db.execute(sql, [this.userId,this.title,this.image,this.iv], (err, results) => {
             if (err) {
                 throw err;
             }
@@ -47,13 +48,21 @@ class Image {
         });
     }
 
+    static async deleteById(id) {
+        const sql = "delete from image where id = ?;";
+        const res = await db.execute(sql, [id]);
+
+        console.log(res);
+    } 
+
 }
 
 function validateImage(image){
     const schema = Joi.object({
         userId: Joi.string().required(),
         title: Joi.string().min(3).required(),
-        password: Joi.string().min(5).max(1024).required(),
+        image: Joi.string().required(),
+        // password: Joi.string().min(5).max(1024).required(),
     });
 
     return schema.validate(image);
