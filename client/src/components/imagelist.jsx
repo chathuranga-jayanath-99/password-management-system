@@ -41,7 +41,7 @@ class ImageList extends React.Component {
   // }
 
   render() {
-    const { images, onDecrypt } = this.props;
+    const { images, onDecrypt, onDelete } = this.props;
     console.log("imagelist", images);
 
     if (images.length == 0) {
@@ -86,6 +86,7 @@ class ImageList extends React.Component {
                       </Button>
 
                       <Button
+                        onClick={() => onDelete(image)}
                         sx={{
                           backgroundColor: "#FF6688",
                           marginTop: "10px",
@@ -96,8 +97,8 @@ class ImageList extends React.Component {
                       </Button>
 
                       <div>
-                          {image.decrypted && 
-                          <img key={"img"+image.id} src="" style={{ width: "100px", height: "100px" }} alt="" />
+                          {image.decrypted &&
+                          <img key={"img"+image.id} src={'data:image/png;base64,'+image.src} style={{ width: "500px", height: "500px" }} alt="" />
                         }
                       </div>
                     </p>

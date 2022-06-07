@@ -1,8 +1,9 @@
+const ROLE = require("../roles.json");
 const bcrypt = require("bcrypt");
 const _ = require("lodash");
 const { Image, validate } = require("../models/image");
 const { User } = require("../models/user");
-const { encrypt } = require("../util/encryptionHandler");
+const { encrypt, decrypt } = require("../util/encryptionHandler");
 
 async function getAllImages(req, res, next) {
   const allImages = await Image.findAll();
@@ -38,7 +39,7 @@ async function postImage(req, res, next) {
     title: req.body.title,
     image: req.body.image,
   });
-
+  // imageObj.iv = "test";
   const encryptedImage = encrypt(imageObj.image);
   imageObj.image = encryptedImage.text;
   imageObj.iv = encryptedImage.iv;
@@ -65,16 +66,20 @@ async function putImage(req, res, next) {
 }
 
 async function viewImage(req, res, next) {
+  console.log("viewImage");
+  console.log("user", req.user);
   const user = req.user;
 
   const imageObj = await Image.findById(req.params.id);
-
-  if (user.role === ROLE.USER && user.id === image.userId) {
+  console.log("imageObj", imageObj);
+  console.log("encrypted_image", imageObj.encrypted_image);
+  
+  if (user.role === ROLE.USER && user.id === imageObj.user_id) {
     const decryptedImage = decrypt({
-      image: imageObj.encryptedImage,
+      text: imageObj.encrypted_image,
       iv: imageObj.iv,
     });
-
+    delete imageObj.encrypted_image;
     imageObj.image = decryptedImage;
 
     return res.send(imageObj);
@@ -83,10 +88,26 @@ async function viewImage(req, res, next) {
   return res.status(403).send("Access denied");
 }
 
+async function deleteImage(req, res, next) {
+  const user = req.user;
+
+  const imageObj = await Image.findById(req.params.id);
+  if (!imageObj) return res.status(404).send("The customer with given ID not found.");
+
+  if (user.role === ROLE.USER && user.id === imageObj.user_id) {
+    await Image.deleteById(req.params.id);
+
+    return res.send("successfully deleted");
+  }
+
+  return res.status(403).send("Access denied");
+  
+}
 module.exports = {
   getAllImages,
   getImage,
   postImage,
   putImage,
   viewImage,
+  deleteImage
 };
