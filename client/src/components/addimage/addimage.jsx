@@ -130,7 +130,7 @@ class AddImage extends Form {
                   fontWeight: "bold",
                 }}
               >
-                Software Eng
+                {this.state.user.name}
               </span>
             </Box>
             <Box gridColumn="span 6" sx={{ paddingTop: 5 }}>
@@ -153,11 +153,12 @@ class AddImage extends Form {
                 </Button>
               </Link>
               <Button
+              href="/dashboard"
                 className="nav-bar-btn"
                 variant="contained"
                 sx={{ marginRight: "1%" }}
               >
-                Logout
+                Back
               </Button>
             </Box>
           </Box>

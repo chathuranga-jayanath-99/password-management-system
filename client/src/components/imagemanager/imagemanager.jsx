@@ -22,12 +22,15 @@ class ImageManager extends React.Component {
 
     const { data } = await getImages();
     const images = data[0];
-    // console.log("imagemanager", images);
+    console.log("imagemanager", images);
 
-    images.forEach((image) => {
-      image.decrypted = false;
-      image.src = "";
-    });
+    if(images) {
+      console.log("image", images);
+      images.forEach((image) => {
+        image.decrypted = false;
+        image.src = "";
+      });
+    }
     // console.log("imagemanager after add attr: ", images);
     this.setState({ user, images: images });
   }
@@ -114,7 +117,7 @@ class ImageManager extends React.Component {
                   fontWeight: "bold",
                 }}
               >
-                Software Eng
+                {this.state.user.name}
               </span>
             </Box>
             <Box gridColumn="span 6" sx={{ paddingTop: 5 }}>
@@ -136,13 +139,13 @@ class ImageManager extends React.Component {
                   Password Manager
                 </Button>
               </Link>
-              <Link to="/logout">
+              <Link to="/dashboard">
                 <Button
                   className="nav-bar-btn"
                   variant="contained"
                   sx={{ marginRight: "1%" }}
                 >
-                  Logout
+                  Back
                 </Button>
               </Link>
             </Box>

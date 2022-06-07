@@ -43,7 +43,7 @@ class ImageList extends React.Component {
     const { images, onDecrypt, onDelete } = this.props;
     console.log("imagelist", images);
 
-    if (images.length == 0) {
+    if (!images) {
       return (
         <div>
           <p>No items to display.</p>

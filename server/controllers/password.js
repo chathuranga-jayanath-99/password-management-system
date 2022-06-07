@@ -30,6 +30,7 @@ async function getPassword(req, res, next) {
 }
 
 async function postPassword(req, res, next) {
+  console.log("post passwotd", req.body);
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -42,7 +43,7 @@ async function postPassword(req, res, next) {
   password.addPasswordStrength();
 
   const encrypted = encrypt(password.password);
-  password.password = encrypted.password;
+  password.password = encrypted.text;
   password.iv = encrypted.iv;
 
   await password.save();

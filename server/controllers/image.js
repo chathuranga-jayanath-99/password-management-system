@@ -6,13 +6,28 @@ const { User } = require("../models/user");
 const { encrypt, decrypt } = require("../util/encryptionHandler");
 
 async function getAllImages(req, res, next) {
-  const allImages = await Image.findAll();
+  const user = req.user;
+  let allImages = NaN;
+
+  if (user.role === ROLE.USER) {
+    allImages = await Image.findAllByUser(user.id);
+  } else if (user.role === ROLE.ADMIN) {
+    allImages = await Image.findAll(user.id);
+  }
   res.send(allImages);
 }
 
 async function getImage(req, res, next) {
+  const user = req.user;
+
   const image = await Image.findById(req.params.id);
-  if (!image) return res.status(404).send("The image with given ID not found.");
+  if (!image)
+    return res.status(404).send("The image with given ID not found");
+
+  if (user.role === ROLE.USER && user.id === image.userId)
+    return res.send(image);
+
+  return res.status(403).send("Access denied");
 
   res.send(image);
 }
@@ -66,8 +81,8 @@ async function putImage(req, res, next) {
 }
 
 async function viewImage(req, res, next) {
-  console.log("viewImage");
-  console.log("user", req.user);
+  // console.log("viewImage");
+  // console.log("user", req.user);
   const user = req.user;
 
   const imageObj = await Image.findById(req.params.id);

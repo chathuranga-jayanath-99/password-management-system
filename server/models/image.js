@@ -14,6 +14,14 @@ class Image {
         return db.execute('select id,user_id,title from image;');
     }
 
+    static async findAllByUser(userId) {
+        const images = await db.execute(
+          "select id,user_id,title from image where user_id=? order by id desc",
+          [userId]
+        );
+        return images;
+      }
+
     static async findById(id) {
         const sql = `select * from image where id=?;`;
         const [images, _] = await db.execute(sql, [id]);
@@ -23,7 +31,7 @@ class Image {
         return false;
     }
 
-    // without password and userId
+    // without image and userId
     static async findByIdAndUpdate(id, newImage) {
         const image = Image.findById(id);
         if (!image) return false;
@@ -62,7 +70,7 @@ function validateImage(image){
         userId: Joi.string().required(),
         title: Joi.string().min(3).required(),
         image: Joi.string().required(),
-        // password: Joi.string().min(5).max(1024).required(),
+        // image: Joi.string().min(5).max(1024).required(),
     });
 
     return schema.validate(image);
