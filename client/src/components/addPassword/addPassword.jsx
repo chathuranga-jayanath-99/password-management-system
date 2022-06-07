@@ -97,7 +97,7 @@ class AddPassword extends React.Component{
                     <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" maxWidth="xl" sx={{ background: '#86C6F4', minHeight: '20%', maxHeight: '50%', borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
                         <Box gridColumn="span 6" sx={{ padding: 5 }}>
                             <img src={user} className='image-icon' />
-                            <span style={{ margin: '25px', fontSize:'25px', verticalAlign: 'super', fontWeight: 'bold' }}>Name</span>
+                            <span style={{ margin: '25px', fontSize:'25px', verticalAlign: 'super', fontWeight: 'bold' }}>{this.state.user.name}</span>
                         </Box>
                         <Box gridColumn="span 6" sx={{ paddingTop: 5 }}>
                         <Button href='/dashboard' className='nav-bar-btn' variant="contained" sx={{ marginRight: '1%', marginLeft: '70%'}}>Back</Button>
