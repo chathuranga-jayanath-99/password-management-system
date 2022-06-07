@@ -130,7 +130,7 @@ function Register() {
       // need to execute this if no errors
       // stop below execution if there are errors in the input user given  
       try {
-        const response = await userService.register({ name:formData.name, email:formData.email, password:formData.password, gender:"male" });
+        const response = await userService.register({ name:formData.name, email:formData.email, password:formData.password, gender:formData.gender });
         auth.loginUserWithJwt(response.headers["x-auth-token"]);
         navigate("/dashboard");
       } catch (ex) {
