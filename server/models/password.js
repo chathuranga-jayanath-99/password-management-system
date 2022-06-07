@@ -97,7 +97,7 @@ function validatePassword(password) {
   const schema = Joi.object({
     userId: Joi.string().required(),
     title: Joi.string().min(3).required(),
-    password: Joi.string().min(5).max(1024).required(),
+    password: Joi.string().max(1024).required(),
   });
 
   return schema.validate(password);
