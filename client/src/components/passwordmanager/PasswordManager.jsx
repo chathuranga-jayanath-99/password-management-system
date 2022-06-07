@@ -28,7 +28,7 @@ class PasswordManager extends Component {
                         </Box>
                         <Box gridColumn="span 6" sx={{ paddingTop: 5 }}>
                             <Link to="/dashboard"><Button size="large" variant="contained" sx={{ marginRight: 4, marginLeft: 20 }}>Dashboard</Button></Link>
-                            <Link to="#"><Button size="large" variant="contained" sx={{ marginRight: 4 }}>Image Manager</Button></Link>
+                            <Link to="/imagemanager"><Button size="large" variant="contained" sx={{ marginRight: 4 }}>Image Manager</Button></Link>
                             <Link to="/logout"> <Button variant="contained" sx={{ marginRight: 4 }} >Logout</Button></Link>
                         </Box>
                     </Box>

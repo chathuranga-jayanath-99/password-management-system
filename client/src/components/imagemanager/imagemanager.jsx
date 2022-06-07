@@ -116,7 +116,7 @@ class ImageManager extends React.Component {
                   fontWeight: "bold",
                 }}
               >
-                Software Eng
+                {this.state.user.name}
               </span>
             </Box>
             <Box gridColumn="span 6" sx={{ paddingTop: 5 }}>
