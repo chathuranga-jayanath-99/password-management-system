@@ -43,7 +43,7 @@ function Register() {
   const [genderError, setGenderError] = React.useState("");
 
   React.useEffect(() => {
-    console.log(formData)
+    
   },[formData]);
 
   const handleName = (event) => {
@@ -70,11 +70,6 @@ function Register() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
-    console.log({
-      name: data.get('name'),
-      email: data.get('email'),
-      password: data.get('password'),
-    });
 
     const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 

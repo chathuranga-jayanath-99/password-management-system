@@ -38,8 +38,7 @@ function Login() {
   const [pwError, setPWError] = React.useState("");
 
   React.useEffect(() => {
-    console.log(formData);
-    console.log(authContext);
+
 
     if (auth.getCurrentUser()) return navigate('/dashboard', {replace: true});
   },[formData]);
@@ -63,12 +62,6 @@ function Login() {
     event.preventDefault();
     // console.log(event);
     const data = new FormData(event.currentTarget);
-
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-      check: data.has('check'),
-    });
 
     const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 

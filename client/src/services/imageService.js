@@ -20,7 +20,6 @@ export function viewImage(imageId) {
 }
 
 export function saveImage(image) {
-  console.log(image);
   if (image._id) {
     const body = { ...image };
     delete body._id;

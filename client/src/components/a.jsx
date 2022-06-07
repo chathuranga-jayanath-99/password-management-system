@@ -36,19 +36,6 @@ class CheckboxList extends React.Component {
             }
         });
 
-        // console.log(passwords)
-        // const pass = [{
-        //     strength: 59.321435073598195,
-        //     id: 2,
-        //     iv: "39d2c476bffeba5af38963b5cefa1638",
-        //     logo: "/static/media/Social Google.0e34468f026c50b2e1d363f48b7c07ba.svg",
-        //     password: "fa2ba0a6bb",
-        //     showPassword: false,
-        //     title: "gmail",
-        //     user_id: 3
-        // }]
-        // this.setState({ passwords: pass });
-        // console.log(passwords)
         this.setState({ passwords })
     }
     async encryptPassword(value) {
@@ -63,7 +50,6 @@ class CheckboxList extends React.Component {
         const newValues = this.state.passwords;
         const index = newValues.indexOf(value);
         newValues[index].password = e.target.value;
-        // console.log(newValues);
         this.setState({ passwords: newValues })
         // setValues({ ...values, [prop]: event.target.value });
     };
@@ -78,7 +64,6 @@ class CheckboxList extends React.Component {
         event.preventDefault();
     };
     handleColorChange = (value) => {
-        // console.log(value)
         if (value < 30) {
             return 'error';
         } else if (value < 50) {

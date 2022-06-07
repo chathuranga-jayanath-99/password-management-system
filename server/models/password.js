@@ -46,7 +46,6 @@ class Password {
   }
 
   async save() {
-    console.log("password", this);
     let sql =
       "insert into password (user_id,title,password,iv,strength) values (?,?,?,?,?);";
 
@@ -79,7 +78,7 @@ class Password {
       (this.password.match(/[a-z]/g) || []).length,
       (this.password.match(/[^A-Za-z0-9]/g) || []).length,
     ];
-    console.log(lengths);
+
     const strengths = [];
 
     lengths.forEach((length) => {

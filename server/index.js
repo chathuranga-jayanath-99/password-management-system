@@ -16,21 +16,22 @@ if (!config.get("jwtPrivateKey")) {
   process.exit(1);
 }
 
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-  })
-);
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(
+  cors({
+    origin: "https://ancient-caverns-84109.herokuapp.com" ,
+    methods: ['GET','POST','PUT','DELETE']
+  })
+);
 
 app.use("/api/users", users);
 app.use("/api/admins", admins);
 app.use("/api/passwords", passwords);
 app.use("/api/images", images);
 app.use("/api/auth", auth);
+require("./startup/prod")(app);
 // app.use('/password-management-system/api/admins', admins);
 
 const port = process.env.PORT || 3000;

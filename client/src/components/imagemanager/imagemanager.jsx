@@ -22,10 +22,9 @@ class ImageManager extends React.Component {
 
     const { data } = await getImages();
     const images = data[0];
-    console.log("imagemanager", images);
 
     if(images) {
-      console.log("image", images);
+
       images.forEach((image) => {
         image.decrypted = false;
         image.src = "";
@@ -53,7 +52,6 @@ class ImageManager extends React.Component {
   };
 
   handleDecrypt = async (image) => {
-    // console.log("handleDecrypt:",image);
     const images = [...this.state.images];
     const index = images.indexOf(image);
     images[index] = { ...images[index] };
@@ -61,19 +59,14 @@ class ImageManager extends React.Component {
     if (images[index].decrypted === false) {
       images[index].decrypted = true;
 
-      // console.log(images[index]);
       const { data: decryptedImage } = await viewImage(images[index].id);
-      console.log("img", decryptedImage);
 
       images[index].src = decryptedImage.image;
-      console.log("images[index]", images[index]);
     } else {
       images[index].decrypted = false;
       images[index].src = "";
     }
-    // console.log("state before saving", images);
     this.setState({ images: images });
-    // console.log("state after saving", this.state);
   };
 
   render() {
