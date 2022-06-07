@@ -22,41 +22,93 @@ import background from "../../assets/img/blue.svg";
 import user from '../../assets/img/user.svg';
 import auth from '../../services/authService';
 import { FormGroup, FormHelperText, Paper } from '@mui/material';
-// import twitter from '../assets/img/Social Twitter.svg';
-// import google from '../assets/img/Social Google.svg';
-// import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
-// import CheckboxList from './a';
-// import { grid, positions } from '@mui/system';
-// import 'bootstrap/dist/css/bootstrap.css';
 
 
 class AddPassword extends React.Component{
-    state = {
-        user: {}
-    }
+    constructor() {
+        super();
+        this.state = {
+            input: {
+                name: '',
+                password : '',
+                confirm_password: ''
+            },
+            errors: {
+                name: '',
+                password : '',
+                confirm_password: ''
+            }
+        };
+         
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+      }
+
     componentDidMount() {
         const user = auth.getCurrentUser();
         this.setState({ user })
     }
 
-    handleChange = (e, value) => {
-        const newValues = this.state.passwords;
-        const index = newValues.indexOf(value);
-        newValues[index].password = e.target.value;
-        // console.log(newValues);
-        this.setState({ passwords: newValues })
-        // setValues({ ...values, [prop]: event.target.value });
-    };
-    handleClickShowPassword = (value) => {
-        const newValues = this.state.passwords;
-        console.log(value)
-        const index = newValues.indexOf(value);
-        newValues[index].showPassword = !newValues[index].showPassword;
-        this.setState({ passwords: newValues })
-    };
-    handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
+    handleChange(event) {
+        let input = this.state.input;
+        input[event.target.name] = event.target.value;
+        
+        this.setState({
+            input
+        });
+    }
+
+    handleSubmit(event){
+        if(this.validate()){
+            console.log(this.state); 
+            let errors = {};     
+            this.setState({errors:errors});      
+            let input = {};
+            input["name"] = "";
+            input["password"] = "";
+            input["confirm_password"] = "";
+            this.setState({input:input});      
+            alert('Demo Form is submited');
+        }
+    }
+
+    validate(){
+        let input = this.state.input;
+        let errors = {};
+        let isValid = true;
+
+        if (!input["name"]) {
+            console.log("hi");
+            isValid = false;
+            errors["name"] = "Please enter your name.";
+        }
+
+        if (!input["password"]) {
+        isValid = false;
+        errors["password"] = "Please enter your password.";
+        }
+
+        if (!input["confirm_password"]) {
+        isValid = false;
+        errors["confirm_password"] = "Please enter your confirm password.";
+        }
+
+        if (typeof input["password"] !== "undefined" && typeof input["confirm_password"] !== "undefined") {
+            
+        if (input["password"] != input["confirm_password"]) {
+            isValid = false;
+            // errors["password"] = "Passwords don't match.";
+            errors["confirm_password"] = "Passwords don't match.";
+        }
+        } 
+
+        this.setState({
+        errors: errors
+        });
+
+        return isValid;
+
+    }
 
     render(){
         return (
@@ -82,23 +134,16 @@ class AddPassword extends React.Component{
                                 <p style={{ color: '#90A4AE'}}>Account Name</p>
                             </Box>
                             <Box gridColumn="span 2" sx={{ paddingTop: 4}}>
-                                <TextField
-                                    //   margin="normal"
-                                    required
-                                    // fullWidth
-                                    // m={2} pt={3}
-                                    id="name"
-                                    label="Name"
-                                    name="name"
-                                    autoComplete="name"
-                                    autoFocus
+                                <input 
                                     className='input-details'
-                                    variant="filled"
-                                    InputProps={{
-                                            disableUnderline: true,
-                                            
-                                    }}
-                                />    
+                                    type="text" 
+                                    name="name" 
+                                    value={this.state.input.name}
+                                    onChange={this.handleChange}
+                                    placeholder="Account Name...." 
+                                    id="name" />
+                        
+                                    <div className="text-danger">{this.state.errors.name}</div>
                             </Box>
                         </Box>
 
@@ -107,20 +152,16 @@ class AddPassword extends React.Component{
                                 <p style={{color: '#90A4AE'}}>Enter Password</p>
                             </Box>
                             <Box gridColumn="span 2" sx={{ paddingTop: 4}}>
-                                <TextField
-                                    required
-                                    margin="normal"        
-                                    name="password"
-                                    label="Password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="current-password"
-                                    className='input-details'
-                                    variant="filled"
-                                    InputProps={{
-                                    disableUnderline: true,
-                                    }}
-                                />
+                                <input 
+                                type="password" 
+                                name="password" 
+                                value={this.state.input.password}
+                                onChange={this.handleChange}
+                                className='input-details'
+                                placeholder="Password...." 
+                                id="password" />
+                    
+                                <div className="text-danger">{this.state.errors.password}</div>
                             </Box>
                         </Box>
 
@@ -129,25 +170,22 @@ class AddPassword extends React.Component{
                                 <p style={{ color: '#90A4AE'}}>Confirm Password</p>
                             </Box>
                             <Box gridColumn="span 2" sx={{ paddingTop: 5}}>
-                            <TextField
-                                    required
-                                    margin="normal"        
-                                    name="password"
-                                    label="Password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="current-password"
+                                <input 
+                                    type="password" 
+                                    name="confirm_password" 
+                                    value={this.state.input.confirm_password}
+                                    onChange={this.handleChange}
                                     className='input-details'
-                                    variant="filled"
-                                    InputProps={{
-                                    disableUnderline: true,
-                                    }}
-                                />
+                                    placeholder="Confirm Password...." 
+                                    id="confirm_password" />
+                        
+                                    <div className="text-danger">{this.state.errors.confirm_password}</div>
                             </Box>
                         </Box>
 
+                    
+                    <Button type="submit" className='add-btn' onClick={() => this.handleSubmit()}>Add Password</Button>
                     </FormGroup>
-                    <Button type="submit" className='add-btn'>Add Password</Button>
                 </Box>
                 </Box>
             </div>
