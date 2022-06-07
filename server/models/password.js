@@ -46,6 +46,7 @@ class Password {
   }
 
   async save() {
+    console.log("password", this);
     let sql =
       "insert into password (user_id,title,password,iv,strength) values (?,?,?,?,?);";
 
