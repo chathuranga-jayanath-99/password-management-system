@@ -71,7 +71,7 @@ async function viewPassword(req, res, next) {
 
   if (user.role === ROLE.USER && user.id === password.userId) {
     const decryptedPassword = decrypt({
-      password: password.password,
+      text: password.password,
       iv: password.iv,
     });
     return res.send(decryptedPassword);

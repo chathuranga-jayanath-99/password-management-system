@@ -118,6 +118,15 @@ class ImageManager extends React.Component {
               </span>
             </Box>
             <Box gridColumn="span 6" sx={{ paddingTop: 5 }}>
+              <Link to="/dashboard">
+                <Button
+                  className="nav-bar-btn"
+                  variant="contained"
+                  sx={{ marginRight: "1%" }}
+                >
+                  Dashboard
+                </Button>
+              </Link>
               <Link to="/passwordmanager">
                 <Button
                   className="nav-bar-btn"
@@ -127,22 +136,15 @@ class ImageManager extends React.Component {
                   Password Manager
                 </Button>
               </Link>
-              <Link to="/imagemanager">
+              <Link to="/logout">
                 <Button
                   className="nav-bar-btn"
                   variant="contained"
                   sx={{ marginRight: "1%" }}
                 >
-                  Image Manager
+                  Logout
                 </Button>
               </Link>
-              <Button
-                className="nav-bar-btn"
-                variant="contained"
-                sx={{ marginRight: "1%" }}
-              >
-                Logout
-              </Button>
             </Box>
           </Box>
 

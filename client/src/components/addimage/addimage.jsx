@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Joi from "joi-browser";
 import Form from "../common/form";
 import "./addimage.css";
@@ -28,7 +29,7 @@ import { FormGroup, FormHelperText, Paper } from "@mui/material";
 // import 'bootstrap/dist/css/bootstrap.css';
 import { Link } from "react-router-dom";
 import { display } from "@mui/system";
-import { saveImage } from './../../services/imageService';
+import { saveImage } from "./../../services/imageService";
 
 class AddImage extends Form {
   state = {
@@ -43,7 +44,6 @@ class AddImage extends Form {
     image: Joi.string().label("image"),
   };
 
-
   componentDidMount() {
     const user = auth.getCurrentUser();
     this.setState({ user });
@@ -52,14 +52,16 @@ class AddImage extends Form {
   send = async (event) => {
     console.log("hey");
     const user = this.props.user;
-
+    console.log("user", user);
     const data = new FormData();
-    data.append("userId", user.id );
+    data.append("userId", user.id);
     data.append("name", this.state.name);
     data.append("image", this.state.image);
 
     console.log(data);
     await saveImage(data);
+    console.log("image saved");
+    this.props.navigate("/imagemanager");
     // axios
     //   .post("http://localhost:5000/api/images", data)
     //   .then((res) => console.log(res));
@@ -225,6 +227,11 @@ class AddImage extends Form {
       </div>
     );
   }
+}
+
+export function AddImageWithRouter(props) {
+  const navigate = useNavigate();
+  return <AddImage user={props.user} navigate={navigate} />;
 }
 
 export default AddImage;

@@ -14,6 +14,7 @@ import Welcome from "./components/welcome/Welcome";
 import PasswordManager from "./components/passwordmanager/PasswordManager";
 import Dashboard from "./components/dashboard/dashboard";
 import { AddPasswordWithRouter } from "./components/addPassword/addPassword";
+import { AddImageWithRouter } from "./components/addimage/addimage";
 import ProtectedRoute from "./components/common/protectedRoute";
 import auth from "./services/authService";
 import Logout from "./components/auth/Logout";
@@ -75,7 +76,7 @@ class App extends Component {
             path="addimage"
             element={
               <ProtectedRoute user={user}>
-                <AddImage user={user} />
+                <AddImageWithRouter user={user} />
               </ProtectedRoute>
             }
           />
