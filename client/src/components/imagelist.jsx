@@ -5,7 +5,7 @@ import { getPasswords } from "../services/passwordService";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Button";
 import { height, width } from "@mui/system";
-import { viewPassword } from './../services/passwordService';
+import { viewPassword } from "./../services/passwordService";
 
 class ImageList extends React.Component {
   state = {
@@ -18,7 +18,6 @@ class ImageList extends React.Component {
     // images.forEach(image => {
     //     image.decrypted = false;
     // });
-
     // this.setState( {images} );
   }
 
@@ -73,7 +72,6 @@ class ImageList extends React.Component {
                   >
                     <p>{image.title}</p>
                     <p>
-
                       <Button
                         onClick={() => onDecrypt(image)}
                         sx={{
@@ -95,14 +93,18 @@ class ImageList extends React.Component {
                       >
                         Delete
                       </Button>
-
-                      <div>
-                          {image.decrypted &&
-                          <img key={"img"+image.id} src={'data:image/png;base64,'+image.src} style={{ width: "500px", height: "500px" }} alt="" />
-                        }
-                      </div>
                     </p>
                   </Box>
+                  <div>
+                    {image.decrypted && (
+                      <img
+                        key={"img" + image.id}
+                        src={"data:image/png;base64," + image.src}
+                        style={{ width: "640px", height: "500px" }}
+                        alt=""
+                      />
+                    )}
+                  </div>
                 </p>
               );
             })}
